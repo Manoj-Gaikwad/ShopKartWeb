@@ -9,6 +9,7 @@
             <th scope="col">ProductColor</th>
             <th scope="col">ProductQuantity</th>
             <th scope="col">ProductPrice</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
             <td>{{item.pcolor}}</td>
             <td>{{item.pquantity}}</td>
             <td>{{item.pprice}}</td>
+            <td><button type="button" class="btn btn-danger" (click)="removeItem(item.pid)">Remove</button></td>
         </tr>
 
     </tbody>

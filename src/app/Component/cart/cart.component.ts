@@ -33,5 +33,14 @@ export class CartComponent implements OnInit {
     })
   }
 
+  removeItem(e: any)
+  {
+    debugger
+    this.servicesService.deletItem(e).subscribe(res=>{
+    alert("item removed");
+    this.getAllCartData();
+    });
+  }
+
 
 }
