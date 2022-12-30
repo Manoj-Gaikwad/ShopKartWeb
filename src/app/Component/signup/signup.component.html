@@ -1,0 +1,70 @@
+<body>
+    <div class="container">
+        <div class="borderbox">
+            <form [formGroup]="employee" (ngSubmit)="addEmployee()">
+                <div class="text-center mt-5">
+                    <h2 class="maintext">SignUp</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+
+                        <input type="text" class="form-control" formControlName="firstName" placeholder="FirstName">
+                        <span class="text-danger" *ngIf="employee.controls['firstName'].touched && employee.controls['firstName'].invalid ">*First Name Required</span>
+
+                    </div>
+                    <div class=" col-sm">
+
+                        <input type="text " class="form-control " formControlName="lastName" placeholder="LastName">
+                        <span class="text-danger" *ngIf="employee.controls['lastName'].touched && employee.controls['lastName'].invalid ">*last Name Required</span>
+
+                    </div>
+                    <div class="col-sm">
+                        <input type="date" class="form-control " formControlName="dob" placeholder="DateOfBirth ">
+                        <span class="text-danger" *ngIf="employee.controls['dob'].touched && employee.controls['dob'].invalid ">*DOB Required</span>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm">
+                        <input type="email " class="form-control " formControlName="email" placeholder="Email ">
+                        <span class="text-danger" *ngIf="employee.controls['email'].touched && employee.controls['email'].invalid ">*Email Required</span>
+                    </div>
+                    <div class="col-sm">
+                        <select formControlName="gender" class="form-control">select Gender
+                        <option value="" disabled="disabled">Select Gender</option>
+                        <option *ngFor="let item of allGender"   [value]="item.name">{{item.name}}</option>
+                    </select>
+                        <span class="text-danger" *ngIf="employee.controls['gender'].touched && employee.controls['gender'].invalid ">*Gender Required</span>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text " class="form-control " formControlName="address" placeholder="Address ">
+                        <span class="text-danger" *ngIf="employee.controls['address'].touched && employee.controls['address'].invalid ">*Address Required</span>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-sm">
+                        <input type="number" class="form-control " formControlName="pincode" placeholder="Pincode ">
+                        <span class="text-danger" *ngIf="employee.controls['pincode'].touched && employee.controls['pincode'].invalid ">*Pincode Required</span>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text " class="form-control " formControlName="contactNo" placeholder="contactNo ">
+                        <span class="text-danger" *ngIf="employee.controls['contactNo'].touched && employee.controls['contactNo'].invalid ">*Contact No Required</span>
+                    </div>
+                    <div class="col-sm">
+                        <input type="password" class="form-control " formControlName="password" placeholder="password ">
+                        <span class="text-danger" *ngIf="employee.controls['password'].touched && employee.controls['password'].invalid ">*Password Required</span>
+                    </div>
+                    <div class="col-sm">
+                        <input type="password" class="form-control " formControlName="cPassword" placeholder="cPassword ">
+                        <span class="text-danger" *ngIf="employee.controls['cPassword'].touched && employee.controls['cPassword'].invalid ">*Conform password Required</span>
+                    </div>
+                </div>
+                <div class="text-center ">
+                    <button type="button " class="btn btn-success " (click)="addEmployee()" [disabled]="!employee.valid">Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <br>
+</body>

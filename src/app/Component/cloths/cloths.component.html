@@ -1,0 +1,96 @@
+<div class="all">
+
+    <div class="container">
+        <div class="text-center mt-3 ">
+            <h2 class="heading">Cloths</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-sm" *ngFor="let item of allClothsDetails">
+                <div class="card">
+                    <img class="card-img-top" src="{{item.pimage}}" width="180px" height="150px" alt="Card image cap">
+                    <div class="card-body" id="cbody">
+                        <h5 class="card-title">Name:-{{item.pname}}</h5>
+                        <p class="card-text">Price:-{{item.pprice}}$</p>
+                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong" (click)="selectedItem(item)">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div>
+                    <div class="modal-body" *ngFor="let item of selectedItems;">
+                        <div class="row">
+                            <div class="col">
+                                <img [src]="image" width="300pxpx" height="300px" style="border-radius:10px ;">
+                                <span>ImageId</span>
+                            </div>
+                            <div class="scroll">
+                                <div class="col" id="des-text">
+                                    <div class="text-center">
+                                        <h3 id="model-heading">Description</h3>
+                                    </div>
+                                    <p>Name : {{item.pname}}<br> Type : {{item.ptype}} <br>Color : {{item.pcolor}} <br>Description : {{item.pdes}}<br>Price : {{this.price}}$
+                                    </p>
+
+
+                                    <div class="text-center" id="model-heading">
+                                        <h3 id="model-heading">Images</h3>
+                                        <div class="row justify-content-md-center mt-3 ">
+                                            <div class="col-md-auto">
+                                                <img src="{{item.scimage1}}" width="50px" height="50px" (click)="changeImage(item.scimage1)">
+                                            </div>
+                                            <div class="col-md-auto">
+                                                <img src="{{item.scimage2}}" width="50px" height="50px" (click)="changeImage(item.scimage2)">
+                                            </div>
+                                            <div class=" col-md-auto ">
+                                                <img src="{{item.scimage3}} " width="50px " height="50px " (click)="changeImage(item.scimage3)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="size">
+                                        <div class="text-center">
+                                            <h3 class="model-heading mt-5">Sizes</h3>
+                                        </div>
+                                        <div class="row row justify-content-md-center mt-3">
+                                            <div class="justify-content-center  mb-2">
+                                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                                    <div class="btn-group mr-2 " role="group" aria-label="First group">
+                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(S)" #S>S</button>
+                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(M)" #M>M</button>
+                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(L)" #L>L</button>
+                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(XL)" #XL>XL</button>
+                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(XXL)" #XXL>XXL</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mb-5 ">
+                            <button type="button " class="btn btn-primary " (click)="addToCart(item)">Add To Cart</button> &nbsp;
+                            <button type="button " class="btn btn-success ">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

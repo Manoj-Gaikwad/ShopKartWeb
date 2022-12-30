@@ -1,0 +1,43 @@
+.heading {
+    border-bottom: 1px solid black;
+}
+
+#model-heading {
+    font-family: sans-serif;
+}
+
+// #des-text p {
+//     font-size: 10px;
+// }
+.scroll {
+    padding: 4px;
+    width: 450px;
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#size {
+    border: 1px solid black;
+    height: 20px;
+    width: 5px !important;
+}
+
+.otpBox input[type="text"] {
+    width: 37px;
+    height: 37px;
+    color: #848484;
+}
+
+input[type="radio"] {
+    padding: 10px;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.btn-group button {
+    // padding: 10px;
+    margin: 10px;
+    border-radius: 10px 10px 10px 10px !important;
+}

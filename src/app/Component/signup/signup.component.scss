@@ -1,0 +1,52 @@
+.row {
+    margin-bottom: 5px;
+}
+
+#allData {
+    border: 1px solid black;
+}
+
+.container {
+    margin-top: 50px;
+    // border: 1px solid white;
+    // box-shadow: 10px 10px 10px black;
+    height: 100%;
+    margin-bottom: 128px;
+    // background: #1e5799;
+    // background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 21, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    // min-height: calc(80vh - 56px);
+}
+
+.col-sm {
+    padding: 10px;
+}
+
+.row {
+    padding: 10px;
+}
+
+p {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.text-center {
+    margin-bottom: 20px;
+}
+
+form {
+    border: 1px solid black;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 10px 10px 10px black;
+}
+
+// .form-control {
+//     border: none !important;
+//     background: transparent;
+//     border-bottom: 1px solid white !important;
+//     color: white;
+// }
+// select {
+//     height: 38px;
+//     width: 249px;
+// }

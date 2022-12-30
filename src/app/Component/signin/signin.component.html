@@ -1,0 +1,26 @@
+<div class="container" *ngIf="isLogin">
+    <div class="text-center">
+        <h2 class="maintext">SignIn</h2>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="checkEmployee(loginForm)">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group ">
+                    <input type="email " class="form-control " formControlName="email" placeholder="Email ">
+                    <span class="text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid ">*Email Required</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <input type="password" class="form-control " formControlName="password" placeholder="password ">
+                    <span class="text-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid ">*Password Required</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center ">
+            <button type="button " class="btn btn-success " [disabled]="!loginForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

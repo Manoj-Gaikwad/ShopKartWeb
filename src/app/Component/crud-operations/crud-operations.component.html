@@ -1,0 +1,130 @@
+<!-- Button trigger modal -->
+Data is={{Showdata}}
+<i class="bi bi-person-circle"></i>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeModel" (click)="clearData()">
+    Add Employee
+  </button>
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearData()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="employee" (ngSubmit)="addEmployee()">
+
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="firstName" placeholder="FirstName">
+                            <span class="text-danger" *ngIf="employee.controls['firstName'].touched && employee.controls['firstName'].invalid ">*First Name Required</span>
+                        </div>
+                    </div>
+                    <div class=" col">
+                        <div class="form-group ">
+                            <input type="text " class="form-control " formControlName="lastName" placeholder="LastName">
+                            <span class="text-danger" *ngIf="employee.controls['lastName'].touched && employee.controls['lastName'].invalid ">*last Name Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="date" class="form-control " formControlName="dob" placeholder="DateOfBirth ">
+                            <span class="text-danger" *ngIf="employee.controls['dob'].touched && employee.controls['dob'].invalid ">*DOB Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="email " class="form-control " formControlName="email" placeholder="Email ">
+                            <span class="text-danger" *ngIf="employee.controls['email'].touched && employee.controls['email'].invalid ">*Email Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <select formControlName="gender" class="form-control">select Gender
+                        <option value="" disabled="disabled">Select Gender</option>
+                        <option *ngFor="let item of allGender"   [value]="item.name">{{item.name}}</option>
+                    </select>
+                            <span class="text-danger" *ngIf="employee.controls['gender'].touched && employee.controls['gender'].invalid ">*Gender Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="text " class="form-control " formControlName="address" placeholder="Address ">
+                            <span class="text-danger" *ngIf="employee.controls['address'].touched && employee.controls['address'].invalid ">*Address Required</span>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="number" class="form-control " formControlName="pincode" placeholder="Pincode ">
+                            <span class="text-danger" *ngIf="employee.controls['pincode'].touched && employee.controls['pincode'].invalid ">*Pincode Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="text " class="form-control " formControlName="contactNo" placeholder="contactNo ">
+                            <span class="text-danger" *ngIf="employee.controls['contactNo'].touched && employee.controls['contactNo'].invalid ">*Contact No Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="password" class="form-control " formControlName="password" placeholder="password ">
+                            <span class="text-danger" *ngIf="employee.controls['password'].touched && employee.controls['password'].invalid ">*Password Required</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group ">
+                            <input type="password" class="form-control " formControlName="cPassword" placeholder="cPassword ">
+                            <span class="text-danger" *ngIf="employee.controls['cPassword'].touched && employee.controls['cPassword'].invalid ">*Conform password Required</span>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearData()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addEmployee()" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of Add Employee Model-->
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">DateOfBirth</th>
+            <th scope="col">Email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Address</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">ContactNo</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of employeeDetails;let i=index;">
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.dob|date:"dd-MM-YYYY"}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.gender}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.pincode}}</td>
+            <td>{{item.contactNo}}</td>
+            <td>
+                <span><button class="btn btn-success" (click)="bindData(item.empId)" data-toggle="modal" data-target="#addEmployeeModel"> Update </button></span>&nbsp;
+                <button class="btn btn-danger" (click)="deletData(item.empId)">Delet</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
