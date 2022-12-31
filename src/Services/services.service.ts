@@ -65,5 +65,12 @@ export class ServicesService {
     return this.http.post(url, data);
   }
 
+  deletItem(data:any)
+  {
+    debugger
+    let url=this.baseUrl+"/CartData/removeItem/" + data;
+    return this.http.get(url);
+  }
+
 }
 
