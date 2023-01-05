@@ -2,11 +2,9 @@ export class Cart {
     pid!: number;
     ptype!: string;
     pname!: string;
-    pprice!: number;
+    psize!:string;
     pcolor!: string;
-    pdes!: string;
+    pquantity!:number
+    pprice!: number;
     pimage!: string;
-    scimage1!: string;
-    scimage2!: string;
-    scimage3!: string;
 }

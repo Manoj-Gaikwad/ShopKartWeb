@@ -9,7 +9,6 @@ export class ServicesService {
   baseUrl = "https://localhost:44351/api";
   constructor(private http: HttpClient) { }
   getbyId(id: any) {
-    debugger
     let url = this.baseUrl + "/EmployeeDetails/getEmployeeDetailsById/" + id;
     return this.http.get(url);
   }
@@ -18,17 +17,14 @@ export class ServicesService {
     return this.http.get(url);
   }
   addEmployee(data: any) {
-    debugger
     let url = this.baseUrl + "/EmployeeDetails/addEmployeeDetails";
     return this.http.post(url, data);
   }
   updateData(data: any) {
-    debugger
     let url = this.baseUrl + "/EmployeeDetails/updateEmployeeDetails";
     return this.http.post(url, data);
   }
   deletData(id: any) {
-    debugger
     let url = this.baseUrl + "/EmployeeDetails/deletEmployeeDetails/" + id;
     return this.http.get(url);
   }
@@ -38,7 +34,6 @@ export class ServicesService {
   }
 
   checkValidEmail(email: any, password: any) {
-    debugger
     let url = this.baseUrl + "/SignIn/loginEmployee/" + email + '/' + password;
     return this.http.get(url);
   }
@@ -60,16 +55,21 @@ export class ServicesService {
   }
 
   addCustomerData(data: any) {
-    debugger
     let url = this.baseUrl + "/CustomerData/addCustomerDetails";
     return this.http.post(url, data);
   }
 
   deletItem(data:any)
   {
-    debugger
     let url=this.baseUrl+"/CartData/removeItem/" + data;
     return this.http.get(url);
+  }
+
+  addToCart(data:any)
+  {
+    debugger
+    let url=this.baseUrl + "/CartData/addCartData";
+    return this.http.post(url , data);
   }
 
 }

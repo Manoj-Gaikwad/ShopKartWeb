@@ -39,8 +39,7 @@ import { CartComponent } from './Component/cart/cart.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
