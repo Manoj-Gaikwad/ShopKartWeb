@@ -7,12 +7,14 @@ import { ServicesService } from 'src/Services/services.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  cartlent: any;
+  cartlength: any;
   allRecords: any;
+  CartLength:any;
 
   constructor(private SubjectbehiviourService: SubjectbehiviourService, private ServicesService: ServicesService) { }
 
   ngOnInit(): void {
+   
     this.getAllCartData();
     // this.SubjectbehiviourService.cartLength.subscribe(res => {
     //   this.cartlent = Number(res);
@@ -23,7 +25,9 @@ export class NavbarComponent implements OnInit {
     debugger
     this.ServicesService.getAllCartData().subscribe(res => {
       this.allRecords = res;
-      this.cartlent = this.allRecords.length;
+      this.cartlength = this.allRecords.length;
+      sessionStorage.setItem('CartLength',this.cartlength);
+      this.CartLength=sessionStorage.getItem('CartLength');
     })
   }
 }

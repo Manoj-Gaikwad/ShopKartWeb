@@ -13,7 +13,7 @@ import { SubjectbehiviourService } from 'src/Services/subjectbehiviour.service';
 export class ClothsComponent implements OnInit {
   allClothsDetails!: any;
   selectedItems: selectedItem[] = [];
-  cart: Cart[] = [];
+  Cart!:Cart;
   image!: string;
   total = 0;
   sum = 0;
@@ -21,10 +21,12 @@ export class ClothsComponent implements OnInit {
   price!: any;
   SItemPrice!: number;
   originalPrice!: number;
+  quantity=1;
+  cartLength:any;
   // buttonDisebled = false;
 
   constructor(
-    private service: ServicesService,
+    private ServicesService: ServicesService,
     private Router: Router,
     private subjectBehaviour: SubjectbehiviourService
   ) { }
@@ -35,11 +37,11 @@ export class ClothsComponent implements OnInit {
   }
 
   getAllClothsDetails() {
-    this.service.getAllClothsDetails().subscribe(res => {
+    this.ServicesService.getAllClothsDetails().subscribe(res => {
       this.allClothsDetails = res;
-
     })
   }
+
   selectedItem(e: any) {
     debugger
     this.image = e.pimage;
@@ -57,14 +59,43 @@ export class ClothsComponent implements OnInit {
     else {
       this.sum = 0;
       e.pprice = this.price;
-      this.cart.push(e);
-      this.subjectBehaviour.subject.next(this.cart);
-      let length = this.cart.length;
-      this.subjectBehaviour.cartLength.next(length);
-      alert("Successfully Added To The Cart");
+      ;
+      for(let i=0;i<this.selectedItems.length;i++)
+    {
+      this.Cart=new Cart()
+      this.Cart.pid=this.selectedItems[i]?.pid;
+      this.Cart.ptype=this.selectedItems[i]?.ptype;
+      this.Cart.pname=this.selectedItems[i]?.pname;
+      this.Cart.psize=this.size;
+      this.Cart.pcolor=this.selectedItems[i].pcolor;
+      this.Cart.pquantity=this.quantity;
+      this.Cart.pprice=this.price;
+      this.Cart.pimage=this.selectedItems[i].pimage;
+    }
+
+    this.ServicesService.addToCart(this.Cart).subscribe(res=>
+      {
+        if(res==true)
+        {
+          alert("SuccessFully Added To The Cart");
+        }
+        else{
+          alert("Error To Adding in Cart");
+        }
+      })
+       
+      this.getAllCartData();
     }
   }
 
+  getAllCartData() {
+    debugger
+    this.ServicesService.getAllCartData().subscribe(res => {
+      this.cartLength=res;
+      this.cartLength.push(this.Cart);
+      sessionStorage.setItem('CartLength',this.cartLength.length);
+    })
+  }
   changeImage(e: any) {
     debugger
     console.log(e);

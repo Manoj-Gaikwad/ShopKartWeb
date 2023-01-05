@@ -20,7 +20,10 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'slider', component: SliderComponent },
   { path: 'clothDetails', component: ClothDetailsComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  {path:'signUp',component:SignupComponent},
+  {path:'signIn',component:SigninComponent}
+
 
 
 ];
