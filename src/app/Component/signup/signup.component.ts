@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  addEmployee() {
+  addCustomer() {
     this.employeeData.empId = this.employee.value.empId;
     this.employeeData.firstName = this.employee.value.firstName;
     this.employeeData.lastName = this.employee.value.lastName;
@@ -69,9 +69,12 @@ export class SignupComponent implements OnInit {
     this.employeeData.dob = this.date;
     if (this.employeeData.empId == undefined) {
       this.employeeData.empId = 0;
-      this.services.addCustomerData(this.employeeData).subscribe(res => {
+      this.services.addCustomer(this.employeeData).subscribe(res => {
+        if(res==true)
+        {
         alert("Empolyee Added Successfully");
         this.employee.reset();
+        }
       })
     }
   }

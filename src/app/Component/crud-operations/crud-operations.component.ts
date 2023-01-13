@@ -91,11 +91,11 @@ export class CrudOperationsComponent implements OnInit {
     this.employeeData.dob = this.date;
     if (this.employeeData.empId == undefined) {
       this.employeeData.empId = 0;
-      this.services.addEmployee(this.employeeData).subscribe(res => {
-        console.log("Empolyee Added Successfully");
-        this.employee.reset();
-        this.getData();
-      })
+      // this.services.addEmployee(this.employeeData).subscribe(res => {
+      //   console.log("Empolyee Added Successfully");
+      //   this.employee.reset();
+      //   this.getData();
+      // })
     }
     else {
       this.services.updateData(this.employeeData).subscribe(res => {

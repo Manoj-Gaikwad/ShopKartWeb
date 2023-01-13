@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
+
 export class SigninComponent implements OnInit {
   loginForm!: any;
   getEmail!: any;
@@ -39,7 +40,7 @@ export class SigninComponent implements OnInit {
     debugger
     this.services.checkValidEmail(this.getEmail, this.getPassword).subscribe(res => {
       if (res == true) {
-        this.router.navigate(['/homepage']);
+        sessionStorage.setItem('isLogin','true');
         alert("Valid User");
         this.isLogin = false;
       }
