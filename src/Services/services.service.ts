@@ -16,8 +16,9 @@ export class ServicesService {
     let url = this.baseUrl + "/EmployeeDetails/getAllEmployeeDetails";
     return this.http.get(url);
   }
-  addEmployee(data: any) {
-    let url = this.baseUrl + "/EmployeeDetails/addEmployeeDetails";
+  addCustomer(data: any) {
+    debugger
+    let url = this.baseUrl + "/CustomerData/addCustomerDetails";
     return this.http.post(url, data);
   }
   updateData(data: any) {
@@ -29,11 +30,12 @@ export class ServicesService {
     return this.http.get(url);
   }
   getAllGenders() {
-    let url = this.baseUrl + "/EmployeeDetails/getAllGender/";
+    let url = this.baseUrl + "/CustomerData/getAllGender/";
     return this.http.get(url);
   }
 
   checkValidEmail(email: any, password: any) {
+    
     let url = this.baseUrl + "/SignIn/loginEmployee/" + email + '/' + password;
     return this.http.get(url);
   }
@@ -71,6 +73,7 @@ export class ServicesService {
     let url=this.baseUrl + "/CartData/addCartData";
     return this.http.post(url , data);
   }
+  
 
 }
 
