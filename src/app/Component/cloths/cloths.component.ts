@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
 import { Router } from '@angular/router';
 import { selectedItem } from 'src/app/Model/selectedItem';
@@ -23,6 +23,7 @@ export class ClothsComponent implements OnInit {
   originalPrice!: number;
   quantity=1;
   cartLength:any;
+  indexval=0;
   // buttonDisebled = false;
 
   constructor(
@@ -37,6 +38,7 @@ export class ClothsComponent implements OnInit {
   }
 
   getAllClothsDetails() {
+    debugger
     this.ServicesService.getAllClothsDetails().subscribe(res => {
       this.allClothsDetails = res;
     })
