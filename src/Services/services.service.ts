@@ -79,6 +79,12 @@ export class ServicesService {
     let url = this.baseUrl + "/CosmeticsDetails/GetCosmeticsData";
     return this.http.get(url);
   }
+
+  getShoesData()
+  {
+    let url=this.baseUrl+"/ShoesDetails/getShoesAllData";
+    return this.http.get(url);
+  }
   
 
 }
