@@ -13,6 +13,7 @@ import { SliderComponent } from './Component/slider/slider.component';
 const routes: Routes = [
   { path: '', component: SliderComponent },
   { path: 'cloths', component: ClothsComponent },
+  {path:'cosmetics',component:CosmeticsComponent},
   { path: 'shoes', component: ShoesComponent },
   { path: 'cosmetics', component: CosmeticsComponent },
   { path: 'signIn', component: SigninComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   {path:'signUp',component:SignupComponent},
   {path:'signIn',component:SigninComponent}
+
 
 
 

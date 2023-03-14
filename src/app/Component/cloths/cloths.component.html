@@ -1,5 +1,4 @@
 <div class="all">
-
     <div class="container">
         <div class="text-center mt-3 ">
             <h2 class="heading">Cloths</h2>
@@ -7,11 +6,11 @@
     </div>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-sm" *ngFor="let item of allClothsDetails">
+            <div class="col-sm" *ngFor="let item of allClothsDetails;let i=index">
                 <div class="card">
                     <img class="card-img-top" src="{{item.pimage}}" width="180px" height="150px" alt="Card image cap">
                     <div class="card-body" id="cbody">
-                        <h5 class="card-title">Name:-{{item.pname}}</h5>
+                        <h5 class="card-title">{{item.pname}}</h5>
                         <p class="card-text">Price:-{{item.pprice}}$</p>
                         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong" (click)="selectedItem(item)">Buy Now</a>
                     </div>
@@ -20,6 +19,10 @@
         </div>
     </div>
 
+
+    <div *ngFor="let item of allClothsDetails;let i=index">
+        <div *ngIf="">55</div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -94,4 +97,4 @@
             </div>
         </div>
     </div>
-    <!-- <app-cart [selectedItems]="selectedItems"></app-cart> -->
+</div>

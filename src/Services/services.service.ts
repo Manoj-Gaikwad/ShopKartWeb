@@ -6,7 +6,7 @@ import { retry } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  baseUrl = "https://localhost:44351/api";
+  baseUrl = "http://localhost:34749/api";
   constructor(private http: HttpClient) { }
   getbyId(id: any) {
     let url = this.baseUrl + "/EmployeeDetails/getEmployeeDetailsById/" + id;
@@ -16,9 +16,9 @@ export class ServicesService {
     let url = this.baseUrl + "/EmployeeDetails/getAllEmployeeDetails";
     return this.http.get(url);
   }
-  addCustomer(data: any) {
+  SignUpUser(data: any) {
     debugger
-    let url = this.baseUrl + "/CustomerData/addCustomerDetails";
+    let url = this.baseUrl + "/Account/SignUpUser";
     return this.http.post(url, data);
   }
   updateData(data: any) {
@@ -47,6 +47,7 @@ export class ServicesService {
 
 
   getAllClothsDetails() {
+    debugger
     let url = this.baseUrl + "/ClothsDetails/getAllClothsData";
     return this.http.get(url);
   }
@@ -72,6 +73,11 @@ export class ServicesService {
     debugger
     let url=this.baseUrl + "/CartData/addCartData";
     return this.http.post(url , data);
+  }
+  
+  GetCosmeticsData() {
+    let url = this.baseUrl + "/CosmeticsDetails/GetCosmeticsData";
+    return this.http.get(url);
   }
   
 

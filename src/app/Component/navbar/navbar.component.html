@@ -15,7 +15,7 @@
                 <a class="nav-link" routerLink="#" routerLinkActive="active">Shoes/Sandals</a>
             </li>
             <li>
-                <a class="nav-link" routerLink="#" routerLinkActive="active">Cosmetics</a>
+                <a class="nav-link" routerLink="cosmetics" routerLinkActive="active">Cosmetics</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" routerLink="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,20 +30,21 @@
             <li class="nav-item" id="nav-right">
                 <a class="nav-link" routerLink="signUp" routerLinkActive="active">Register</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" routerLink="signIn" routerLinkActive="active">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="cart" routerLinkActive="active">Cart
                      <!-- <span class="badge">3</span> -->
-                     <sup class="badge" *ngIf="CartLength!=0">{{CartLength}}</sup>
+                     <!-- <sup class="badge" *ngIf="CartLength!=0">{{CartLength}}</sup> -->
                     </a>
 
             </li>
         </ul>
     </div>
-    <div *ngIf="isLogin!=true" class="collapse navbar-collapse justify-content-end">
-        Welcome {{isLogin}}
+    <div *ngIf="isLogin == true" class="collapse navbar-collapse justify-content-end">
+        {{"Welcome" +" "+ isLogin}}
     </div>
 
 
