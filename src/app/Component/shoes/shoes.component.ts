@@ -69,8 +69,12 @@ export class ShoesComponent implements OnInit {
       this.Cart.pname=this.selectedItems[i]?.pname;
       this.Cart.psize=showSize;
       this.Cart.pcolor=this.selectedItems[i].pcolor;
+      if(this.Cart.pquantity==undefined)
+      {
       this.Cart.pquantity=this.quantity;
+      }
       this.Cart.pprice=this.price;
+      this.Cart.newprice=this.Cart.pprice*this.Cart.pquantity;
       this.Cart.pimage=this.selectedItems[i].pimage;
     }
 

@@ -17,6 +17,7 @@ import { ShoesComponent } from './Component/shoes/shoes.component';
 import { CosmeticsComponent } from './Component/cosmetics/cosmetics.component';
 import { ClothDetailsComponent } from './Component/cloths/cloth-details/cloth-details.component';
 import { CartComponent } from './Component/cart/cart.component';
+import { InventryComponent } from './Component/inventry/inventry.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CartComponent } from './Component/cart/cart.component';
     ShoesComponent,
     CosmeticsComponent,
     ClothDetailsComponent,
-    CartComponent
+    CartComponent,
+    InventryComponent
   ],
   imports: [
     BrowserModule,

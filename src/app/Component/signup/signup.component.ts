@@ -9,6 +9,8 @@ import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  Token:any;
+  loginForm!: any;
   employeeDetails!: any;
   employee!: any;
   employeeData = new EmployeeData();
@@ -28,6 +30,11 @@ export class SignupComponent implements OnInit {
       contactNo: new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       password: new FormControl('', [Validators.required]),
       cPassword: new FormControl('', [Validators.required])
+    })
+    
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     })
   }
 
@@ -72,11 +79,23 @@ export class SignupComponent implements OnInit {
       this.services.SignUpUser(this.employeeData).subscribe(res => {
         if(res==true)
         {
-        alert("Empolyee Added Successfully");
+        alert("Success");
         this.employee.reset();
         }
       })
     }
   }
+
+SignIn(data:any)
+{
+  debugger
+  this.services.SignIn(data).subscribe(res=>{
+  this.Token=res;
+  });
 }
+
+
+}
+
+
 
