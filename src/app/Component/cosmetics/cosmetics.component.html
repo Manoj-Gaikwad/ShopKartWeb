@@ -1,13 +1,13 @@
 <div class="all">
     <div class="container">
         <div class="text-center mt-3 ">
-            <h2 class="heading">Cosmetics</h2>
+            <h2 class="heading">Perfumes/Shampoos</h2>
         </div>
     </div>
     <div class="container">
         <div class="row mt-5">
-            <div class="col-sm" *ngFor="let item of CosmeticsDetails">
-                <div class="card">
+            <div class="col-6 col-md-3" *ngFor="let item of CosmeticsDetails">
+                <div class="card mb-5">
                     <img class="card-img-top" src="{{item.pimage}}" width="180px" height="150px" alt="Card image cap">
                     <div class="card-body" id="cbody">
                         <h5 class="card-title">{{item.pname}}</h5>

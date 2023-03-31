@@ -6,5 +6,6 @@ export class Cart {
     pcolor!: string;
     pquantity!:number
     pprice!: number;
+    newprice!:number;
     pimage!: string;
 }

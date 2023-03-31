@@ -6,7 +6,7 @@ import { retry } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  baseUrl = "http://localhost:34749/api";
+  baseUrl = "https://localhost:44317/api";
   constructor(private http: HttpClient) { }
   getbyId(id: any) {
     let url = this.baseUrl + "/EmployeeDetails/getEmployeeDetailsById/" + id;
@@ -21,6 +21,11 @@ export class ServicesService {
     let url = this.baseUrl + "/Account/SignUpUser";
     return this.http.post(url, data);
   }
+  SignIn(data:any)
+  {
+    let url=this.baseUrl+"/Account/SignIn/"+data.email+data.password;
+    return this.http.get(url);
+  }
   updateData(data: any) {
     let url = this.baseUrl + "/EmployeeDetails/updateEmployeeDetails";
     return this.http.post(url, data);
@@ -33,19 +38,21 @@ export class ServicesService {
     let url = this.baseUrl + "/CustomerData/getAllGender/";
     return this.http.get(url);
   }
-
   checkValidEmail(email: any, password: any) {
     
     let url = this.baseUrl + "/SignIn/loginEmployee/" + email + '/' + password;
     return this.http.get(url);
   }
-
   getAllProductsDetails() {
     let url = this.baseUrl + "/ProductsDetails/getAllEmployeeDetails";
     return this.http.get(url);
   }
 
-
+ addClothsData(data:any)
+ {
+  let url = this.baseUrl + "/ClothsDetails/AddClothsData";
+  return this.http.post(url,data);
+ }
   getAllClothsDetails() {
     debugger
     let url = this.baseUrl + "/ClothsDetails/getAllClothsData";
@@ -85,6 +92,11 @@ export class ServicesService {
     let url=this.baseUrl+"/ShoesDetails/getShoesAllData";
     return this.http.get(url);
   }
+updateCart(data:any)
+{
+  let url=this.baseUrl+"/CartData/updateCart";
+  return this.http.post(url,data);
+}
   
 
 }

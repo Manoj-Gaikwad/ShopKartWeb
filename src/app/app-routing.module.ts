@@ -5,6 +5,7 @@ import { ClothDetailsComponent } from './Component/cloths/cloth-details/cloth-de
 import { ClothsComponent } from './Component/cloths/cloths.component';
 import { CosmeticsComponent } from './Component/cosmetics/cosmetics.component';
 import { HomepageComponent } from './Component/homepage/homepage.component';
+import { InventryComponent } from './Component/inventry/inventry.component';
 import { ShoesComponent } from './Component/shoes/shoes.component';
 import { SigninComponent } from './Component/signin/signin.component';
 import { SignupComponent } from './Component/signup/signup.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path:'shoesDetails',component:ShoesComponent},
   { path: 'cart', component: CartComponent },
   {path:'signUp',component:SignupComponent},
-  {path:'signIn',component:SigninComponent}
+  {path:'signIn',component:SigninComponent},
+  {path:'inventry',component:InventryComponent}
 
 
 

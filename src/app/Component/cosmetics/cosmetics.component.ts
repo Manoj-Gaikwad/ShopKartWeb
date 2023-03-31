@@ -63,8 +63,12 @@ export class CosmeticsComponent implements OnInit {
       this.Cart.pname=this.selectedItems[i]?.pname;
       this.Cart.psize="";
       this.Cart.pcolor=this.selectedItems[i].pcolor;
+      if(this.Cart.pquantity==undefined)
+      {
       this.Cart.pquantity=this.quantity;
+      }
       this.Cart.pprice=this.selectedItems[i].pprice;
+      this.Cart.newprice=this.Cart.pprice*this.Cart.pquantity;
       this.Cart.pimage=this.selectedItems[i].pimage;
     }
 

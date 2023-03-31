@@ -17,16 +17,7 @@
             <li>
                 <a class="nav-link" routerLink="cosmetics" routerLinkActive="active">Cosmetics</a>
             </li>
-            <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" routerLink="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li> -->
+
             <li class="nav-item" id="nav-right">
                 <a class="nav-link" routerLink="signUp" routerLinkActive="active">Register</a>
             </li>
@@ -35,18 +26,19 @@
                 <a class="nav-link" routerLink="signIn" routerLinkActive="active">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="cart" routerLinkActive="active">Cart
+                <a class="nav-link" routerLink="cart" routerLinkActive="active">
+                    Cart<sup class="badge" *ngIf="CartLength!=0">{{CartLength}}</sup>
                      <!-- <span class="badge">3</span> -->
-                     <!-- <sup class="badge" *ngIf="CartLength!=0">{{CartLength}}</sup> -->
-                    </a>
+                </a>
 
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="inventry" routerLinkActive="active">Inventry</a>
             </li>
         </ul>
     </div>
-    <div *ngIf="isLogin == true" class="collapse navbar-collapse justify-content-end">
+    <div class="collapse navbar-collapse justify-content-end">
         {{"Welcome" +" "+ isLogin}}
     </div>
-
-
-
 </nav>
