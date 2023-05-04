@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { SubjectbehiviourService } from "src/Services/subjectbehiviour.service";
 import { ServicesService } from "src/Services/services.service";
 import { Cart } from "src/app/Model/cart";
 
@@ -16,26 +15,28 @@ export class CartComponent implements OnInit {
   cart = new Cart();
 
   constructor(
-    private SubjectbehiviourService: SubjectbehiviourService,
-    private servicesService: ServicesService
-  ) {}
+    private servicesService: ServicesService){
+    this.getAllCartData();
+  }
 
   ngOnInit(): void {
-    this.getAllCartData();
+   
   }
 
   getAllCartData() {
     this.servicesService.getAllCartData().subscribe((res) => {
       this.allRecords = res;
+      this.servicesService.cartLength.next(this.allRecords.length);
     });
   }
 
   removeItem(e: any) {
     this.servicesService.deletItem(e).subscribe((res) => {
-      alert("item removed");
+      alert("Item Removed");
       this.getAllCartData();
     });
   }
+
   AddQuantity = (event: any) => {
     this.cart = event;
     this.cart.pquantity = this.cart.pquantity + 1;

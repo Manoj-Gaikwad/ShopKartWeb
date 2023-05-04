@@ -21,19 +21,21 @@ export class CosmeticsComponent implements OnInit {
   originalPrice!: number;
   quantity=1;
   Cart!: Cart;
-  constructor(private sevice: ServicesService) { }
+  allRecords:any;
+
+  constructor(private ServicesService: ServicesService) { }
 
   ngOnInit(): void {
     this.GetCosmeticsData();
   }
 
   GetCosmeticsData() {
-    this.sevice.GetCosmeticsData().subscribe(res => {
+    this.ServicesService.GetCosmeticsData().subscribe(res => {
       this.CosmeticsDetails = res;
     })
   }
+
   selectedItem(e: any) {
-    debugger
     this.image = e.pimage;
     this.originalPrice = e.pprice;
     this.price = e.pprice;
@@ -41,13 +43,11 @@ export class CosmeticsComponent implements OnInit {
     this.selectedItems.push(e);
   }
   changeImage(e: any) {
-    debugger
     console.log(e);
     this.image = e;
   }
 
   addToCart(e: any) {
-    debugger
     // if (this.size == undefined) {
     //   alert("Please Select Size First");
     // }
@@ -72,17 +72,24 @@ export class CosmeticsComponent implements OnInit {
       this.Cart.pimage=this.selectedItems[i].pimage;
     }
 
-    this.sevice.addToCart(this.Cart).subscribe(res=>
+    this.ServicesService.addToCart(this.Cart).subscribe(res=>
       {
         if(res==true)
         {
           alert("SuccessFully Added To The Cart");
+          this.getAllCartData();
         }
         else{
           alert("Error To Adding in Cart");
         }
       })
        
-      // this.getAllCartData();
+      
+    }
+    getAllCartData() {
+      this.ServicesService.getAllCartData().subscribe((res) => {
+        this.allRecords = res;
+        this.ServicesService.cartLength.next(this.allRecords.length+1);
+      });
     }
 }

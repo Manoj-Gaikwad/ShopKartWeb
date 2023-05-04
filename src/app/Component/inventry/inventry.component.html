@@ -33,13 +33,13 @@
                 <label for="inputEmail4">Product Image</label>
                 <input type="file" class="form-control" id="inputEmail4" formControlName="pImage" placeholder="Image">
                 <label for="inputEmail4">SubImage1</label>
-                <input type="file" class="form-control" id="inputEmail4" formControlName="PSimage1" placeholder="Image">
+                <input type="file" class="form-control" id="inputEmail4" formControlName="scimage1" placeholder="Image">
                 <label for="inputEmail4">SubImage2</label>
                 <input type="file" class="form-control" id="inputEmail4" formControlName="PSimage2" placeholder="Image">
                 <label for="inputEmail4">SubImage3</label>
                 <input type="file" class="form-control" id="inputEmail4" formControlName="PSimage3" placeholder="Image">
                 <div class="d-flex justify-content-center">
-                    <button type="submit " class="btn btn-primary mt-3 " onclick="AddData(ClothsData)">Add</button>
+                    <button type="submit " class="btn btn-primary mt-3 " (click)="AddData(ClothsData)">Add</button>
                 </div>
             </div>
             <div class="form-group col-md-6 mt-5 ">

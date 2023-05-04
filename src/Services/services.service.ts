@@ -1,102 +1,106 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { retry } from 'rxjs';
+import { BehaviorSubject, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
+  
+  subject: BehaviorSubject<any> = new BehaviorSubject<any>('');
+  cartLength: BehaviorSubject<any> = new BehaviorSubject<any>(0);
+
   baseUrl = "https://localhost:44317/api";
+
   constructor(private http: HttpClient) { }
-  getbyId(id: any) {
+
+  getbyId(id: any){
     let url = this.baseUrl + "/EmployeeDetails/getEmployeeDetailsById/" + id;
     return this.http.get(url);
   }
+
   getData() {
     let url = this.baseUrl + "/EmployeeDetails/getAllEmployeeDetails";
     return this.http.get(url);
   }
+
   SignUpUser(data: any) {
-    debugger
     let url = this.baseUrl + "/Account/SignUpUser";
     return this.http.post(url, data);
   }
-  SignIn(data:any)
-  {
+
+  SignIn(data:any){
     let url=this.baseUrl+"/Account/SignIn/"+data.email+data.password;
     return this.http.get(url);
   }
-  updateData(data: any) {
+
+  updateData(data: any){
     let url = this.baseUrl + "/EmployeeDetails/updateEmployeeDetails";
     return this.http.post(url, data);
   }
-  deletData(id: any) {
+
+  deletData(id: any){
     let url = this.baseUrl + "/EmployeeDetails/deletEmployeeDetails/" + id;
     return this.http.get(url);
   }
-  getAllGenders() {
+
+  getAllGenders(){
     let url = this.baseUrl + "/CustomerData/getAllGender/";
     return this.http.get(url);
   }
+
   checkValidEmail(email: any, password: any) {
-    
     let url = this.baseUrl + "/SignIn/loginEmployee/" + email + '/' + password;
     return this.http.get(url);
   }
-  getAllProductsDetails() {
+
+  getAllProductsDetails(){
     let url = this.baseUrl + "/ProductsDetails/getAllEmployeeDetails";
     return this.http.get(url);
   }
 
- addClothsData(data:any)
- {
+ addClothsData(data:any){
   let url = this.baseUrl + "/ClothsDetails/AddClothsData";
   return this.http.post(url,data);
  }
-  getAllClothsDetails() {
-    debugger
+
+ getAllClothsDetails(){
     let url = this.baseUrl + "/ClothsDetails/getAllClothsData";
     return this.http.get(url);
   }
-
-  getAllCartData() {
+  getAllCartData(){
     let url = this.baseUrl + "/CartData/getAllCartData";
     return this.http.get(url);
   }
 
-  addCustomerData(data: any) {
+  addCustomerData(data: any){
     let url = this.baseUrl + "/CustomerData/addCustomerDetails";
     return this.http.post(url, data);
   }
 
-  deletItem(data:any)
-  {
+  deletItem(data:any){
     let url=this.baseUrl+"/CartData/removeItem/" + data;
     return this.http.get(url);
   }
 
-  addToCart(data:any)
-  {
-    debugger
+  addToCart(data:any){
     let url=this.baseUrl + "/CartData/addCartData";
     return this.http.post(url , data);
   }
   
-  GetCosmeticsData() {
+  GetCosmeticsData(){
     let url = this.baseUrl + "/CosmeticsDetails/GetCosmeticsData";
     return this.http.get(url);
   }
 
-  getShoesData()
-  {
+  getShoesData(){
     let url=this.baseUrl+"/ShoesDetails/getShoesAllData";
     return this.http.get(url);
   }
-updateCart(data:any)
-{
+  updateCart(data:any){
   let url=this.baseUrl+"/CartData/updateCart";
   return this.http.post(url,data);
-}
+  }
   
 
 }
