@@ -3,7 +3,6 @@ import { ServicesService } from 'src/Services/services.service';
 import { Router } from '@angular/router';
 import { selectedItem } from 'src/app/Model/selectedItem';
 import { Cart } from 'src/app/Model/cart';
-import { SubjectbehiviourService } from 'src/Services/subjectbehiviour.service';
 
 @Component({
   selector: 'app-cloths',
@@ -24,16 +23,19 @@ export class ClothsComponent implements OnInit {
   quantity=1;
   cartLength:any;
   indexval=0;
+  allRecords:any;
+  clothsAddress!:string
   // buttonDisebled = false;
 
   constructor(
+    
     private ServicesService: ServicesService,
     private Router: Router,
-    private subjectBehaviour: SubjectbehiviourService
   ) { }
 
 
   ngOnInit(): void {
+  
     this.getAllClothsDetails();
   }
 
@@ -41,6 +43,7 @@ export class ClothsComponent implements OnInit {
     debugger
     this.ServicesService.getAllClothsDetails().subscribe(res => {
       this.allClothsDetails = res;
+      this.clothsAddress="../../assets/images/";
     })
   }
 
@@ -84,24 +87,23 @@ export class ClothsComponent implements OnInit {
         if(res==true)
         {
           alert("SuccessFully Added To The Cart");
+          this.ServicesService.cartLength.next(this.allRecords.length+1);
+          this.getAllCartData();
+
         }
         else{
           alert("Error To Adding in Cart");
         }
       })
        
-      this.getAllCartData();
     }
   }
-
   getAllCartData() {
-    debugger
-    this.ServicesService.getAllCartData().subscribe(res => {
-      this.cartLength=res;
-      this.cartLength.push(this.Cart);
-      sessionStorage.setItem('CartLength',this.cartLength.length);
-    })
+    this.ServicesService.getAllCartData().subscribe((res) => {
+      this.allRecords = res;
+    });
   }
+  
   changeImage(e: any) {
     debugger
     console.log(e);

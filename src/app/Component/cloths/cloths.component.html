@@ -8,7 +8,7 @@
         <div class="row mt-5">
             <div class="col-6 col-md-3" *ngFor="let item of allClothsDetails;let i=index">
                 <div class="card mb-5">
-                    <img class="card-img-top" src="{{item.pimage}}" width="180px" height="150px" alt="Card image cap">
+                    <img class="card-img-top" src="{{clothsAddress+item.pimage}}" width="180px" height="150px" alt="Card image cap">
                     <div class="card-body" id="cbody">
                         <h5 class="card-title">{{item.pname}}</h5>
                         <p class="card-text">Price:-{{item.pprice}}$</p>
@@ -29,7 +29,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
                 </div>
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="text-center mb-5 ">
-                            <button type="button " class="btn btn-primary " (click)="addToCart(item)">Add To Cart</button> &nbsp;
+                            <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="addToCart(item)" >Add To Cart</button> &nbsp;
                             <button type="button " class="btn btn-success ">Buy</button>
                         </div>
                     </div>

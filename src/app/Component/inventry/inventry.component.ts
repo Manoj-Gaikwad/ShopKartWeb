@@ -37,6 +37,7 @@ export class InventryComponent implements OnInit {
     if (data != null) {
       this.serive.addClothsData(data).subscribe(res => {
         var result = res;
+        
       })
     }
   }

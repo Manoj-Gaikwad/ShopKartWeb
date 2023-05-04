@@ -1,9 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
-import { Router } from '@angular/router';
 import { selectedItem } from 'src/app/Model/selectedItem';
 import { Cart } from 'src/app/Model/cart';
-import { SubjectbehiviourService } from 'src/Services/subjectbehiviour.service';
 
 @Component({
   selector: 'app-shoes',
@@ -25,12 +23,12 @@ export class ShoesComponent implements OnInit {
   quantity=1;
   cartLength:any;
   indexval=0;
+  allRecords:any;
   // buttonDisebled = false;
+  shoesAddress=" ../../assets/shoes-images/";
 
   constructor(
     private ServicesService: ServicesService,
-    private Router: Router,
-    private subjectBehaviour: SubjectbehiviourService
   ) { }
 
 
@@ -83,23 +81,23 @@ export class ShoesComponent implements OnInit {
         if(res==true)
         {
           alert("SuccessFully Added To The Cart");
+          this.getAllCartData();
+          this.ServicesService.cartLength.next(this.allRecords.length+1);
         }
         else{
           alert("Error To Adding in Cart");
         }
       })
-       
-      this.getAllCartData();
     }
   }
 
+  
   getAllCartData() {
-    this.ServicesService.getAllCartData().subscribe(res => {
-      this.cartLength=res;
-      this.cartLength.push(this.Cart);
-      sessionStorage.setItem('CartLength',this.cartLength.length);
-    })
+    this.ServicesService.getAllCartData().subscribe((res) => {
+      this.allRecords = res;
+    });
   }
+
   changeImage(e: any) {
     console.log(e);
     this.image = e;

@@ -138,8 +138,10 @@
                                     *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid ">*Password
                                     Required</span>
                             </div>
+                            <button type="button " class="btnRegister" (click)="SignIn(loginForm)"
+                                    [disabled]="!employee.valid">Submit</button>
                         </div>
-                        <input type="submit" class="btnRegister" value="SignIn" (click)="SignIn(loginForm)" />
+                        
                     </div>
                 </form>
                 </div>

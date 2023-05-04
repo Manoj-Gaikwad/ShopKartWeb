@@ -28,9 +28,6 @@ const routes: Routes = [
   {path:'signIn',component:SigninComponent},
   {path:'inventry',component:InventryComponent}
 
-
-
-
 ];
 
 @NgModule({
