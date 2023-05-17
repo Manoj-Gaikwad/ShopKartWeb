@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/Model/cart';
 import { selectedItem } from 'src/app/Model/selectedItem';
 import { ServicesService } from 'src/Services/services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cosmetics',
@@ -22,8 +23,14 @@ export class CosmeticsComponent implements OnInit {
   quantity=1;
   Cart!: Cart;
   allRecords:any;
+  isLogin!:any;
+  iscustomerid!:any;
+ 
 
-  constructor(private ServicesService: ServicesService) { }
+  constructor(private ServicesService: ServicesService,private Router: Router) { 
+    this.isLogin=sessionStorage.getItem("isLogin");
+    this.iscustomerid=sessionStorage.getItem("customerid");
+  }
 
   ngOnInit(): void {
     this.GetCosmeticsData();
@@ -48,6 +55,8 @@ export class CosmeticsComponent implements OnInit {
   }
 
   addToCart(e: any) {
+if(this.isLogin!=undefined)
+{
     // if (this.size == undefined) {
     //   alert("Please Select Size First");
     // }
@@ -58,6 +67,7 @@ export class CosmeticsComponent implements OnInit {
       for(let i=0;i<this.selectedItems.length;i++)
     {
       this.Cart=new Cart()
+      this.Cart.cid=this.iscustomerid;
       this.Cart.pid=this.selectedItems[i]?.pid;
       this.Cart.ptype=this.selectedItems[i]?.ptype;
       this.Cart.pname=this.selectedItems[i]?.pname;
@@ -85,9 +95,14 @@ export class CosmeticsComponent implements OnInit {
       })
        
       
-    }
+  }
+  else{
+    alert("login First");
+    this.Router.navigate(['/signIn']);
+  }
+}
     getAllCartData() {
-      this.ServicesService.getAllCartData().subscribe((res) => {
+      this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
         this.allRecords = res;
         this.ServicesService.cartLength.next(this.allRecords.length+1);
       });

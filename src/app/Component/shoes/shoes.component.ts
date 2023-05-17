@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
 import { selectedItem } from 'src/app/Model/selectedItem';
 import { Cart } from 'src/app/Model/cart';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-shoes',
@@ -26,13 +28,21 @@ export class ShoesComponent implements OnInit {
   allRecords:any;
   // buttonDisebled = false;
   shoesAddress=" ../../assets/shoes-images/";
+  isLogin!:any;
+  iscustomerid!:any;
+  
 
   constructor(
     private ServicesService: ServicesService,
-  ) { }
+    private router: Router
+  ) {
+    this.isLogin=sessionStorage.getItem("isLogin");
+    this.iscustomerid=sessionStorage.getItem("customerid");
+   }
 
 
   ngOnInit(): void {
+    
     this.getAllShoesDetails();
   }
 
@@ -51,6 +61,8 @@ export class ShoesComponent implements OnInit {
   }
 
   addToCart(e: any) {
+if(this.isLogin!=undefined)
+{
     var showSize:string=String(this.size);
     if (this.size == undefined) {
       alert("Please Select Size First");
@@ -62,6 +74,7 @@ export class ShoesComponent implements OnInit {
       for(let i=0;i<this.selectedItems.length;i++)
     {
       this.Cart=new Cart()
+      this.Cart.cid=this.iscustomerid;
       this.Cart.pid=this.selectedItems[i]?.pid;
       this.Cart.ptype=this.selectedItems[i]?.ptype;
       this.Cart.pname=this.selectedItems[i]?.pname;
@@ -90,10 +103,14 @@ export class ShoesComponent implements OnInit {
       })
     }
   }
+  else{
+    this.router.navigate(['/signIn']);
+    alert("login First");
+  }
+}
 
-  
   getAllCartData() {
-    this.ServicesService.getAllCartData().subscribe((res) => {
+    this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;
     });
   }

@@ -25,29 +25,34 @@ export class SigninComponent implements OnInit {
     })
   }
 
+    
+  signin={
+    email:"",
+    password:""
+  }
+
   ngOnInit(): void {
   }
 
-  checkEmployee(e: any) {
-    debugger
-    this.getEmail = e.value.email;
-    this.getPassword = e.value.password;
-    this.checkValidEmail();
+  checkCustomer(e: any) {
+    this.signin.email = e.value.email;
+    this.signin.password = e.value.password;
 
-  }
-
-  checkValidEmail() {
-    debugger
-    this.services.checkValidEmail(this.getEmail, this.getPassword).subscribe(res => {
-      if (res == true) {
-        sessionStorage.setItem('isLogin','true');
+    this.services.SignIn(this.signin).subscribe((res:any) => {
+      if (res.result.message == "Success") {
+        sessionStorage.setItem('isLogin',res.result.output.firstName);
+        sessionStorage.setItem('customerid',  res.result.output.cId);
         alert("Valid User");
-        this.isLogin = false;
+        this.loginForm.reset();
+        // this.isLogin = false;
       }
       else {
-        this.router.navigate(['/signIn']);
+        // this.router.navigate(['/signIn']);
+        this.loginForm.reset();
         alert("Invalid Email and Password");
       }
-    })
+
+    });
   }
 }
+ 

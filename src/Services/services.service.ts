@@ -30,8 +30,8 @@ export class ServicesService {
   }
 
   SignIn(data:any){
-    let url=this.baseUrl+"/Account/SignIn/"+data.email+data.password;
-    return this.http.get(url);
+    let url=this.baseUrl+"/Account/SignIn";
+    return this.http.post(url,data);
   }
 
   updateData(data: any){
@@ -65,11 +65,12 @@ export class ServicesService {
  }
 
  getAllClothsDetails(){
-    let url = this.baseUrl + "/ClothsDetails/getAllClothsData";
+    let url = this.baseUrl + "/ClothsDetails/getClothsData";
     return this.http.get(url);
   }
-  getAllCartData(){
-    let url = this.baseUrl + "/CartData/getAllCartData";
+  getAllCartData(data:any){
+    var cid=parseInt(data);
+    let url = this.baseUrl + "/CartData/getAllCartData/"+cid;
     return this.http.get(url);
   }
 
@@ -93,9 +94,17 @@ export class ServicesService {
     return this.http.get(url);
   }
 
+  addCosmeticsData(data:any){
+    let url = this.baseUrl + "/CosmeticsDetails/addCosmeticsData";
+    return this.http.post(url,data);
+  }
   getShoesData(){
     let url=this.baseUrl+"/ShoesDetails/getShoesAllData";
     return this.http.get(url);
+  }
+  addShoesData(data:any){
+    let url=this.baseUrl+"/ShoesDetails/addShoesData";
+    return this.http.post(url,data);
   }
   updateCart(data:any){
   let url=this.baseUrl+"/CartData/updateCart";

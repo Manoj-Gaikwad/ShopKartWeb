@@ -1,4 +1,5 @@
 export class Cart {
+    cid!:number;
     pid!: number;
     ptype!: string;
     pname!: string;
