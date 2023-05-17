@@ -25,13 +25,15 @@ export class ClothsComponent implements OnInit {
   indexval=0;
   allRecords:any;
   clothsAddress!:string
+  isLogin!:any;
+  iscustomerid!:any;
+
   // buttonDisebled = false;
 
-  constructor(
-    
-    private ServicesService: ServicesService,
-    private Router: Router,
-  ) { }
+  constructor(private ServicesService: ServicesService,private Router: Router,){
+    this.isLogin=sessionStorage.getItem("isLogin");
+    this.iscustomerid=sessionStorage.getItem("customerid");
+   }
 
 
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class ClothsComponent implements OnInit {
   }
 
   getAllClothsDetails() {
-    debugger
     this.ServicesService.getAllClothsDetails().subscribe(res => {
       this.allClothsDetails = res;
       this.clothsAddress="../../assets/images/";
@@ -48,7 +49,6 @@ export class ClothsComponent implements OnInit {
   }
 
   selectedItem(e: any) {
-    debugger
     this.image = e.pimage;
     this.originalPrice = e.pprice;
     this.price = e.pprice;
@@ -57,7 +57,8 @@ export class ClothsComponent implements OnInit {
   }
 
   addToCart(e: any) {
-    debugger
+  if(this.isLogin!=undefined)
+    {
     if (this.size == undefined) {
       alert("Please Select Size First");
     }
@@ -68,6 +69,7 @@ export class ClothsComponent implements OnInit {
       for(let i=0;i<this.selectedItems.length;i++)
     {
       this.Cart=new Cart()
+      this.Cart.cid=this.iscustomerid;
       this.Cart.pid=this.selectedItems[i]?.pid;
       this.Cart.ptype=this.selectedItems[i]?.ptype;
       this.Cart.pname=this.selectedItems[i]?.pname;
@@ -98,20 +100,23 @@ export class ClothsComponent implements OnInit {
        
     }
   }
+  else{
+    alert("login First");
+    this.Router.navigate(['/signIn']);
+  }
+}
   getAllCartData() {
-    this.ServicesService.getAllCartData().subscribe((res) => {
+    this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;
     });
   }
   
   changeImage(e: any) {
-    debugger
     console.log(e);
     this.image = e;
   }
 
   checkSize(size: any) {
-    debugger
     this.size = size.innerText;
     // if (this.size != undefined) {
     //   this.buttonDisebled = true;

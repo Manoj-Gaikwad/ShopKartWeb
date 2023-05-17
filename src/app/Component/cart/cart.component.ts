@@ -13,18 +13,30 @@ export class CartComponent implements OnInit {
   sum = 0;
   cartdata: any;
   cart = new Cart();
+  isLogin:any;
+  isCustomerId:any;
 
   constructor(
     private servicesService: ServicesService){
-    this.getAllCartData();
+      this.isLogin=sessionStorage.getItem("isLogin");
+      this.isCustomerId=sessionStorage.getItem("customerid");
+      if(this.isCustomerId!=undefined && this.isCustomerId!=0)
+      {
+        this.getAllCartData();
+      }
   }
 
   ngOnInit(): void {
-   
+
   }
 
   getAllCartData() {
-    this.servicesService.getAllCartData().subscribe((res) => {
+    this.servicesService.getAllCartData(this.isCustomerId).subscribe((res:any) => {
+      for(let i=0;i<res.length;i++){
+      if(res[i].ptype == "shoes"){
+        res[i].pimage="../../assets/shoes-images/"+res[i].pimage;
+      }
+    }
       this.allRecords = res;
       this.servicesService.cartLength.next(this.allRecords.length);
     });

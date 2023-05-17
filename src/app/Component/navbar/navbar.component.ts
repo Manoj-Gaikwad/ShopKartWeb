@@ -10,22 +10,22 @@ export class NavbarComponent implements OnInit {
   cartlength: any;
   allRecords: any;
   CartLength:any;
-  isLogin=false;
+  isLogin:any;
+  iscustomerid!:any;
 
   constructor(private ServicesService: ServicesService) {
+    this.isLogin=sessionStorage.getItem('isLogin');
+    this.iscustomerid=sessionStorage.getItem("customerid");
     this.getAllCartData();
-    this.ServicesService.cartLength.subscribe(res => {
-      this.cartlength = Number(res);
-    })
+
    }
 
   ngOnInit(): void {
-    this.isLogin=Boolean(sessionStorage.getItem('isLogin'));
- 
+   
   }
   
   getAllCartData() {
-    this.ServicesService.getAllCartData().subscribe((res) => {
+    this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;
       this.ServicesService.cartLength.next(this.allRecords.length);
     });
