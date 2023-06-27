@@ -14,11 +14,13 @@ export class SigninComponent implements OnInit {
   getEmail!: any;
   getPassword!: any;
   isLogin = true;
+  iscustomerid!:any;
+  allRecords!:any;
 
-  constructor(
-    private services: ServicesService,
-    private router: Router
+  constructor(private services: ServicesService,
+    private router: Router,
   ) {
+    this.iscustomerid=sessionStorage.getItem("customerid");
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -37,14 +39,19 @@ export class SigninComponent implements OnInit {
   checkCustomer(e: any) {
     this.signin.email = e.value.email;
     this.signin.password = e.value.password;
-
     this.services.SignIn(this.signin).subscribe((res:any) => {
       if (res.result.message == "Success") {
         sessionStorage.setItem('isLogin',res.result.output.firstName);
         sessionStorage.setItem('customerid',  res.result.output.cId);
+          this.services.getAllCartData(res.result.output.cId).subscribe((res) => {
+            this.allRecords = res;
+            this.services.cartLength.next(this.allRecords.length);
+          });
+          this.services.isLogin.next(res.result.output.firstName);
         alert("Valid User");
         this.loginForm.reset();
         // this.isLogin = false;
+        this.router.navigate(['/homepage']);
       }
       else {
         // this.router.navigate(['/signIn']);

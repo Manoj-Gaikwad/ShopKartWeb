@@ -18,6 +18,11 @@ import { CosmeticsComponent } from './Component/cosmetics/cosmetics.component';
 import { ClothDetailsComponent } from './Component/cloths/cloth-details/cloth-details.component';
 import { CartComponent } from './Component/cart/cart.component';
 import { InventryComponent } from './Component/inventry/inventry.component';
+import { MainComponent } from './Component/main/main.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -35,13 +40,16 @@ import { InventryComponent } from './Component/inventry/inventry.component';
     CosmeticsComponent,
     ClothDetailsComponent,
     CartComponent,
-    InventryComponent
+    InventryComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

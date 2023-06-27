@@ -127,9 +127,8 @@ export class InventryComponent implements OnInit {
   }
 
 
-checkData(event:any)
-{
- var res=event.target.value;
+checkData(event:any){
+ var res=event.target.innerHTML;
  if(res=='Shoes/sandals')
  {
   this.isShoesData=true;

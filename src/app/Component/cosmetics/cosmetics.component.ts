@@ -28,11 +28,11 @@ export class CosmeticsComponent implements OnInit {
  
 
   constructor(private ServicesService: ServicesService,private Router: Router) { 
-    this.isLogin=sessionStorage.getItem("isLogin");
     this.iscustomerid=sessionStorage.getItem("customerid");
   }
 
   ngOnInit(): void {
+    this.isLogin=sessionStorage.getItem('isLogin');
     this.GetCosmeticsData();
   }
 
@@ -104,7 +104,7 @@ if(this.isLogin!=undefined)
     getAllCartData() {
       this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
         this.allRecords = res;
-        this.ServicesService.cartLength.next(this.allRecords.length+1);
+        this.ServicesService.cartLength.next(this.allRecords.length);
       });
     }
 }
