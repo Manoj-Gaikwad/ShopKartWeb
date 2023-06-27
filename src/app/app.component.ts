@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +19,6 @@ export class AppComponent {
 
 
   getData() {
-    debugger
     this.services.getData().subscribe(res => {
       this.employeeDetails = res
     }
@@ -26,7 +26,6 @@ export class AppComponent {
   }
 
   deletData(data: any) {
-    debugger
     this.services.deletData(data).subscribe(res => {
       alert("deleted")
       this.getData();
@@ -45,18 +44,13 @@ export class AppComponent {
       pincode: 789654
     }
 
-    debugger
     this.services.updateData(data1).subscribe(res => {
 
       console.log("res" + res);
 
     })
 
-
-
-
   }
-
 
 }
 function deletData(data: any, any: any) {

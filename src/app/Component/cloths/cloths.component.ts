@@ -31,13 +31,16 @@ export class ClothsComponent implements OnInit {
   // buttonDisebled = false;
 
   constructor(private ServicesService: ServicesService,private Router: Router,){
-    this.isLogin=sessionStorage.getItem("isLogin");
     this.iscustomerid=sessionStorage.getItem("customerid");
    }
 
 
   ngOnInit(): void {
-  
+    this.isLogin=sessionStorage.getItem("isLogin");
+    // this.ServicesService.isLogin.subscribe(res=>{
+    //   this.isLogin=res;
+    // })
+    
     this.getAllClothsDetails();
   }
 
@@ -57,6 +60,7 @@ export class ClothsComponent implements OnInit {
   }
 
   addToCart(e: any) {
+
   if(this.isLogin!=undefined)
     {
     if (this.size == undefined) {
@@ -89,9 +93,7 @@ export class ClothsComponent implements OnInit {
         if(res==true)
         {
           alert("SuccessFully Added To The Cart");
-          this.ServicesService.cartLength.next(this.allRecords.length+1);
           this.getAllCartData();
-
         }
         else{
           alert("Error To Adding in Cart");
@@ -108,6 +110,7 @@ export class ClothsComponent implements OnInit {
   getAllCartData() {
     this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;
+      this.ServicesService.cartLength.next(this.allRecords.length);
     });
   }
   

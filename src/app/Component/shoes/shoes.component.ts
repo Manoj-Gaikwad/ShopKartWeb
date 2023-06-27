@@ -42,7 +42,10 @@ export class ShoesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    this.isLogin=sessionStorage.getItem("isLogin");
+    // this.ServicesService.isLogin.subscribe(res=>{
+    //   this.isLogin=res;
+    // })
     this.getAllShoesDetails();
   }
 
@@ -60,58 +63,51 @@ export class ShoesComponent implements OnInit {
     this.selectedItems.push(e);
   }
 
-  addToCart(e: any) {
-if(this.isLogin!=undefined)
-{
-    var showSize:string=String(this.size);
-    if (this.size == undefined) {
-      alert("Please Select Size First");
-    }
-    else {
-      this.sum = 0;
-      e.pprice = this.price;
-      ;
-      for(let i=0;i<this.selectedItems.length;i++)
-    {
-      this.Cart=new Cart()
-      this.Cart.cid=this.iscustomerid;
-      this.Cart.pid=this.selectedItems[i]?.pid;
-      this.Cart.ptype=this.selectedItems[i]?.ptype;
-      this.Cart.pname=this.selectedItems[i]?.pname;
-      this.Cart.psize=showSize;
-      this.Cart.pcolor=this.selectedItems[i].pcolor;
-      if(this.Cart.pquantity==undefined)
-      {
-      this.Cart.pquantity=this.quantity;
+addToCart(e: any) {
+  if(this.isLogin!=undefined){
+      var showSize:string=String(this.size);
+      if (this.size == undefined) {
+        alert("Please Select Size First");
       }
-      this.Cart.pprice=this.price;
-      this.Cart.newprice=this.Cart.pprice*this.Cart.pquantity;
-      this.Cart.pimage=this.selectedItems[i].pimage;
-    }
-
-    this.ServicesService.addToCart(this.Cart).subscribe(res=>
-      {
-        if(res==true)
-        {
-          alert("SuccessFully Added To The Cart");
-          this.getAllCartData();
-          this.ServicesService.cartLength.next(this.allRecords.length+1);
+      else {
+        this.sum = 0;
+        e.pprice = this.price;
+        for(let i=0;i<this.selectedItems.length;i++){
+        this.Cart=new Cart()
+        this.Cart.cid=this.iscustomerid;
+        this.Cart.pid=this.selectedItems[i]?.pid;
+        this.Cart.ptype=this.selectedItems[i]?.ptype;
+        this.Cart.pname=this.selectedItems[i]?.pname;
+        this.Cart.psize=showSize;
+        this.Cart.pcolor=this.selectedItems[i].pcolor;
+        if(this.Cart.pquantity==undefined){
+        this.Cart.pquantity=this.quantity;
         }
-        else{
-          alert("Error To Adding in Cart");
-        }
+        this.Cart.pprice=this.price;
+        this.Cart.newprice=this.Cart.pprice*this.Cart.pquantity;
+        this.Cart.pimage=this.selectedItems[i].pimage;
+      }
+      this.ServicesService.addToCart(this.Cart).subscribe(res=>{
+          if(res==true){
+            alert("SuccessFully Added To The Cart");
+            this.getAllCartData();
+          }
+          else{
+            alert("Error To Adding in Cart");
+          }
       })
     }
   }
-  else{
-    this.router.navigate(['/signIn']);
-    alert("login First");
+    else{
+      this.router.navigate(['/signIn']);
+      alert("login First");
+    }
   }
-}
 
   getAllCartData() {
     this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;
+      this.ServicesService.cartLength.next(this.allRecords.length);
     });
   }
 

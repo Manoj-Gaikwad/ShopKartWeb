@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
   AddQuantity = (event: any) => {
     this.cart = event;
     this.cart.pquantity = this.cart.pquantity + 1;
-    this.cart.newprice = this.cart.pprice * this.cart.pquantity;
+    this.cart.newprice = this.cart.pprice *this.cart.pquantity;
     this.servicesService.updateCart(this.cart).subscribe((res) => {
       if (res != null) {
         console.log("Success");

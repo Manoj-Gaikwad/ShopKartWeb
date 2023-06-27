@@ -10,6 +10,7 @@ import { ShoesComponent } from './Component/shoes/shoes.component';
 import { SigninComponent } from './Component/signin/signin.component';
 import { SignupComponent } from './Component/signup/signup.component';
 import { SliderComponent } from './Component/slider/slider.component';
+import {NavbarComponent} from './Component/navbar/navbar.component';
 
 const routes: Routes = [
   { path: '', component: SliderComponent },
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   {path:'signUp',component:SignupComponent},
   {path:'signIn',component:SigninComponent},
-  {path:'inventry',component:InventryComponent}
+  {path:'inventry',component:InventryComponent},
+  {path:'navbar',component:NavbarComponent}
+
 
 ];
 
