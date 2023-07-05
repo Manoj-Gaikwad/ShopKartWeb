@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BillingComponent } from './Component/billing/billing.component';
 import { FooterComponent } from './Component/footer/footer.component';
 import { ReviewsComponent } from './Component/reviews/reviews.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -54,8 +55,9 @@ import { ReviewsComponent } from './Component/reviews/reviews.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule,
-    NgbModule
+    ToastrModule.forRoot(),
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

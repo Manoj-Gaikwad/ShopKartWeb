@@ -8,11 +8,13 @@
         <div class="row mt-5 ">
             <div class="col-6 col-md-3" *ngFor="let item of allShoesDetails;let i=index">
                 <div class="card mb-5">
-                    <img class="card-img-top" src="{{shoesAddress+item.pimage}}" width="180px" height="150px" alt="Card image cap">
+                    <img class="card-img-top" src="{{shoesAddress+item.pimage}}" width="180px" height="150px"
+                        alt="Card image cap">
                     <div class="card-body" id="cbody">
                         <h5 class="card-title">{{item.pname}}</h5>
                         <p class="card-text">Price:-{{item.pprice}}$</p>
-                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong" (click)="selectedItem(item)">Buy Now</a>
+                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong"
+                            (click)="selectedItem(item)">Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -24,20 +26,22 @@
         <div *ngIf="">55</div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Shoes Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div>
                     <div class="modal-body" *ngFor="let item of selectedItems;">
                         <div class="row">
                             <div class="col">
-                                <img [src]="shoesAddress+image" width="300pxpx" height="300px" style="border-radius:10px ;">
+                                <img [src]="shoesAddress+image" width="300pxpx" height="300px"
+                                    style="border-radius:10px ;">
                                 <span>ImageId</span>
                             </div>
                             <div class="scroll">
@@ -45,21 +49,24 @@
                                     <div class="text-center">
                                         <h3 id="model-heading">Description</h3>
                                     </div>
-                                    <p>Name : {{item.pname}}<br> Type : {{item.ptype}} <br>Color : {{item.pcolor}} <br>Description : {{item.pdes}}<br>Price : {{this.price}}$
+                                    <p>Name : {{item.pname}}<br> Type : {{item.ptype}} <br>Color : {{item.pcolor}}
+                                        <br>Description : {{item.pdes}}<br>Price : {{this.price}}$
                                     </p>
-
 
                                     <div class="text-center" id="model-heading">
                                         <h3 id="model-heading">Images</h3>
                                         <div class="row justify-content-md-center mt-3 ">
                                             <div class="col-md-auto">
-                                                <img src="{{shoesAddress+item.scimage1}}" width="50px" height="50px" (click)="changeImage(item.scimage1)">
+                                                <img src="{{shoesAddress+item.scimage1}}" width="50px" height="50px"
+                                                    (click)="changeImage(item.scimage1)">
                                             </div>
                                             <div class="col-md-auto">
-                                                <img src="{{shoesAddress+item.scimage2}}" width="50px" height="50px" (click)="changeImage(item.scimage2)">
+                                                <img src="{{shoesAddress+item.scimage2}}" width="50px" height="50px"
+                                                    (click)="changeImage(item.scimage2)">
                                             </div>
                                             <div class=" col-md-auto ">
-                                                <img src="{{shoesAddress+item.scimage3}} " width="50px " height="50px " (click)="changeImage(item.scimage3)">
+                                                <img src="{{shoesAddress+item.scimage3}} " width="50px " height="50px "
+                                                    (click)="changeImage(item.scimage3)">
                                             </div>
                                         </div>
                                     </div>
@@ -71,25 +78,31 @@
                                         </div>
                                         <div class="row row justify-content-md-center mt-3">
                                             <div class="justify-content-center  mb-2">
-                                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                                <div class="btn-toolbar" role="toolbar"
+                                                    aria-label="Toolbar with button groups">
                                                     <div class="btn-group mr-2 " role="group" aria-label="First group">
-                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(7)" #7>7</button>
-                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(8)" #8>8</button>
-                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(9)" #9>9</button>
-                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(10)" #10>10</button>
-                                                        <button type="button" class="btn btn-secondary" (click)="checkSize(11)" #11>11</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            (click)="checkSize(7)" #7>7</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            (click)="checkSize(8)" #8>8</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            (click)="checkSize(9)" #9>9</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            (click)="checkSize(10)" #10>10</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            (click)="checkSize(11)" #11>11</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-center mb-5 ">
-                            <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="addToCart(item)">Add To Cart</button> &nbsp;
+                            <button type="button " class="btn btn-primary " data-dismiss="modal"
+                                (click)="addToCart(item)">Add To Cart</button> &nbsp;
                             <button type="button " class="btn btn-success ">Buy</button>
                         </div>
                     </div>
