@@ -10,6 +10,10 @@ export class ServicesService {
   subject: BehaviorSubject<any> = new BehaviorSubject<any>('');
   cartLength: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   isLogin: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  Billingdata: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  userdata1: BehaviorSubject<any> = new BehaviorSubject<any>("");
+
+ 
   
 
   baseUrl = "https://localhost:44317/api";

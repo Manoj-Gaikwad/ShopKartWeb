@@ -21,6 +21,9 @@ import { InventryComponent } from './Component/inventry/inventry.component';
 import { MainComponent } from './Component/main/main.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BillingComponent } from './Component/billing/billing.component';
+import { FooterComponent } from './Component/footer/footer.component';
+import { ReviewsComponent } from './Component/reviews/reviews.component';
 
 
 
@@ -41,7 +44,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ClothDetailsComponent,
     CartComponent,
     InventryComponent,
-    MainComponent
+    MainComponent,
+    BillingComponent,
+    FooterComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,

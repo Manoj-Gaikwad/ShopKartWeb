@@ -11,7 +11,43 @@ h2 {
 .btn-success {
     width: 150px;
 }
-
+#heading
+{
+    text-shadow: 1px solid black;
+    font-family:  'Glober';
+}
+#top
+{
+    margin-top:40px;
+}
+#top-products
+{
+    display: flex;
+    justify-content: center;
+    margin-top:10px;
+}
+#box
+{
+    box-shadow: 10px 10px 10px black;
+}
+#topProducts
+{
+   height: 220px;
+   box-shadow: 10px 10px 10px black;
+}
+#qualityText
+{
+    height: 500px;
+   
+}
+#qualitybody
+{
+    padding: 10px;
+}
+#review-page
+{
+    margin-top:auto;
+}
 // body {
 //     height: 100%;
 //     margin-top: 0px;

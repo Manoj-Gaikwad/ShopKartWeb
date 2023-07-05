@@ -17,16 +17,16 @@ export class NavbarComponent implements OnInit {
   iscustomerid!:any;
 
   constructor(private ServicesService: ServicesService, private router: Router) {
-    this.iscustomerid=sessionStorage.getItem("customerid");
-   
+    
+    
    }
 
   ngOnInit(): void {
-    //  this.ServicesService.isLogin.subscribe((res:any)=>this.isLogin=res);
-    this.ServicesService.cartLength.subscribe(res => {
-      this.isLogin=sessionStorage.getItem("isLogin");
+    this.ServicesService.cartLength.subscribe(res =>{
       this.cartlength = Number(res);
-    })
+      this.isLogin=JSON.parse((sessionStorage.getItem("isLogin"))!);
+      this.iscustomerid=sessionStorage.getItem("customerid");
+    });
     this.getAllCartData();
   }
   
@@ -37,9 +37,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  logout()
-  {
-    debugger
+  logout(){
     sessionStorage.clear();
     this.isLogin=undefined;
     this.iscustomerid=undefined;

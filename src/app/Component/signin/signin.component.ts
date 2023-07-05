@@ -16,6 +16,7 @@ export class SigninComponent implements OnInit {
   isLogin = true;
   iscustomerid!:any;
   allRecords!:any;
+  userdata:any;
 
   constructor(private services: ServicesService,
     private router: Router,
@@ -41,13 +42,18 @@ export class SigninComponent implements OnInit {
     this.signin.password = e.value.password;
     this.services.SignIn(this.signin).subscribe((res:any) => {
       if (res.result.message == "Success") {
-        sessionStorage.setItem('isLogin',res.result.output.firstName);
+        var data=res.result.output;
+        if(data.firstName.length!=0){
+        this.services.userdata1.next(data);
+      }
+        // sessionStorage.setItem('isLogin',res.result.output.firstName);
+        sessionStorage.setItem('isLogin',JSON.stringify(res.result.output));
         sessionStorage.setItem('customerid',  res.result.output.cId);
           this.services.getAllCartData(res.result.output.cId).subscribe((res) => {
             this.allRecords = res;
             this.services.cartLength.next(this.allRecords.length);
           });
-          this.services.isLogin.next(res.result.output.firstName);
+          this.services.isLogin.next(res.result.output);
         alert("Valid User");
         this.loginForm.reset();
         // this.isLogin = false;
@@ -58,7 +64,6 @@ export class SigninComponent implements OnInit {
         this.loginForm.reset();
         alert("Invalid Email and Password");
       }
-
     });
   }
 }

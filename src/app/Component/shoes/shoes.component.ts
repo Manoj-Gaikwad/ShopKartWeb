@@ -36,13 +36,13 @@ export class ShoesComponent implements OnInit {
     private ServicesService: ServicesService,
     private router: Router
   ) {
-    this.isLogin=sessionStorage.getItem("isLogin");
+    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
     this.iscustomerid=sessionStorage.getItem("customerid");
    }
 
 
   ngOnInit(): void {
-    this.isLogin=sessionStorage.getItem("isLogin");
+    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
     // this.ServicesService.isLogin.subscribe(res=>{
     //   this.isLogin=res;
     // })

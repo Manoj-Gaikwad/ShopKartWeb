@@ -21,12 +21,17 @@
 {
     color: white;
 }
-.profilebtn
+#dropdownMenuButton
 {
-    background: transparent;
+    background: none;
     color: white;
     background: none;
     text-decoration: none;
+    border: none;
+}
+#dropdownMenuButton:hover
+{
+    border: 1px solid white;
 }
 
 // .navbar-expand-lg
@@ -34,3 +39,8 @@
 //   overflow: hidden;
 //   position: fixed; /* Set the navbar to fixed position */
 // }
+.dropdown-menu
+{
+    min-width: 11rem;
+    min-height:8rem;
+}

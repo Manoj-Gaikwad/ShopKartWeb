@@ -1,45 +1,115 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ProductId</th>
-      <th scope="col">ProductImage</th>
-      <th scope="col">ProductType</th>
-      <th scope="col">ProductName</th>
-      <th scope="col">ProductSize</th>
-      <th scope="col">ProductColor</th>
-      <th scope="col">ProductQuantity</th>
-      <th scope="col">ProductPrice</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of allRecords;let i=index">
-      <td>{{item.id}}</td>
-      <td><img src="{{item.pimage}}" width="30px" height="30px" /></td>
-      <td>{{item.ptype}}</td>
-      <td>{{item.pname}}</td>
-      <td>{{item.psize}}</td>
-      <td>{{item.pcolor}}</td>
-      <td>
-        <!-- {{item.pquantity}} -->
-        <button style="margin-right: 10px;" (click)="SubtractQuantity(item)">
-          -
-        </button>
-        <input type="text" class="incriment" value="{{item.pquantity}}" />
-        <button style="margin-left: 10px;" (click)="AddQuantity(item)">
-          +
-        </button>
-      </td>
-      <td>{{item.newprice}}</td>
-      <td>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="removeItem(item.id)"
-        >
-          Remove
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="all" *ngIf="isCart">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- <th scope="col">ProductId</th> -->
+        <th scope="col">ProductImage</th>
+        <th scope="col">ProductType</th>
+        <th scope="col">ProductName</th>
+        <th scope="col">ProductSize</th>
+        <th scope="col">ProductColor</th>
+        <th scope="col">ProductQuantity</th>
+        <th scope="col">ProductPrice</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allRecords;let i=index">
+        <!-- <td>{{item.id}}</td> -->
+        <td><img src="{{item.pimage}}" width="60px" height="40px" /></td>
+        <td>{{item.ptype}}</td>
+        <td>{{item.pname}}</td>
+        <td>{{item.psize}}</td>
+        <td>{{item.pcolor}}</td>
+        <td>
+          <!-- {{item.pquantity}} -->
+          <button style="margin-right: 10px;" (click)="SubtractQuantity(item)">
+            -
+          </button>
+          <input type="text" class="incriment" value="{{item.pquantity}}" />
+          <button style="margin-left: 10px;" (click)="AddQuantity(item)">
+            +
+          </button>
+        </td>
+        <td>{{item.newprice}}</td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="removeItem(item.id)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <h1 class="text-end mr-5">Total Items={{totalitems}}</h1> -->
+  <h1 class="text-end mr-5">Total Price={{totalprice}}</h1>
+  <div class="text-end mr-5">
+    <button class="btn btn-success" type="button" (click)="hideshow()">Buy Now</button>
+  </div>
+</div>
+
+
+
+
+<!--Buy Now-->
+
+<div class="buynow" *ngIf="isBuyNow">
+  <div class="container">
+    <div class="card" style="overflow-x:auto;">
+      <div>
+        <!-- <img src="../../../assets/images/ShopKartLogo.PNG" width="100px" height="80px"> -->
+        <h4 class="mt-2 ml-2">ShopKart</h4>
+        <hr>
+      </div>
+      <div class="mt-2 ml-2">
+        <p><strong> Name:-</strong>{{isLogin.firstName}} {{isLogin.lastName}}<br>
+          <strong> Email:-</strong>{{isLogin.email}}<br>
+          <strong> Contact:-</strong>{{isLogin.contactNo}}<br>
+          <strong> Address:-</strong>{{isLogin.address}}<br>
+          <strong> Pincode:-</strong>{{isLogin.pincode}}
+        </p>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product Id</th>
+              <th scope="col">ProductType</th>
+              <th scope="col">ProductName</th>
+              <th scope="col">ProductSize</th>
+              <th scope="col">ProductColor</th>
+              <th scope="col">ProductQuantity</th>
+              <th scope="col">ProductPrice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of allRecords;let i=index">
+              <td>{{item.pid}}</td>
+              <td>{{item.ptype}}</td>
+              <td>{{item.pname}}</td>
+              <td>{{item.psize}}</td>
+              <td>{{item.pcolor}}</td>
+              <td>{{item.pquantity}}</td>
+              <td>{{item.newprice}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <p>{{totalprice}}=Total Price</p>
+                <button class="btn btn-primary" (click)="back()">Back</button> &nbsp;
+                <button class="btn btn-success">Pay Now</button>
+                <!-- <p>{{totalitems}}=Total Items</p> -->
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
