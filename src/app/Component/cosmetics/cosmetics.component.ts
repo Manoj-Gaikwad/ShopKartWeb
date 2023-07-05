@@ -32,7 +32,7 @@ export class CosmeticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLogin=sessionStorage.getItem('isLogin');
+    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
     this.GetCosmeticsData();
   }
 

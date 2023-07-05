@@ -36,7 +36,7 @@ export class ClothsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.isLogin=sessionStorage.getItem("isLogin");
+    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
     // this.ServicesService.isLogin.subscribe(res=>{
     //   this.isLogin=res;
     // })

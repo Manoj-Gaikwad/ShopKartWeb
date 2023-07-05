@@ -13,9 +13,9 @@ import { SliderComponent } from './Component/slider/slider.component';
 import {NavbarComponent} from './Component/navbar/navbar.component';
 
 const routes: Routes = [
-  { path: '', component: SliderComponent },
+  { path: '', component: HomepageComponent },
   { path: 'cloths', component: ClothsComponent },
-  {path:'cosmetics',component:CosmeticsComponent},
+  { path: 'cosmetics',component:CosmeticsComponent},
   { path: 'shoes', component: ShoesComponent },
   { path: 'cosmetics', component: CosmeticsComponent },
   { path: 'signIn', component: SigninComponent },
@@ -23,14 +23,12 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'slider', component: SliderComponent },
   { path: 'clothDetails', component: ClothDetailsComponent },
-  {path:'shoesDetails',component:ShoesComponent},
+  { path: 'shoesDetails',component:ShoesComponent},
   { path: 'cart', component: CartComponent },
-  {path:'signUp',component:SignupComponent},
-  {path:'signIn',component:SigninComponent},
-  {path:'inventry',component:InventryComponent},
-  {path:'navbar',component:NavbarComponent}
-
-
+  { path: 'signUp',component:SignupComponent},
+  { path: 'signIn',component:SigninComponent},
+  { path: 'inventry',component:InventryComponent},
+  { path: 'navbar',component:NavbarComponent},
 ];
 
 @NgModule({
@@ -39,6 +37,5 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule {
-
 
 }
