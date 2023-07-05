@@ -3,6 +3,7 @@ import { ServicesService } from 'src/Services/services.service';
 import { Router } from '@angular/router';
 import { selectedItem } from 'src/app/Model/selectedItem';
 import { Cart } from 'src/app/Model/cart';
+import {NotifyService} from 'src/Services/notify.service';
 
 @Component({
   selector: 'app-cloths',
@@ -30,7 +31,7 @@ export class ClothsComponent implements OnInit {
 
   // buttonDisebled = false;
 
-  constructor(private ServicesService: ServicesService,private Router: Router,){
+  constructor(private ServicesService: ServicesService,private Router: Router,private Notify:NotifyService){
     this.iscustomerid=sessionStorage.getItem("customerid");
    }
 
@@ -64,7 +65,7 @@ export class ClothsComponent implements OnInit {
   if(this.isLogin!=undefined)
     {
     if (this.size == undefined) {
-      alert("Please Select Size First");
+      this.Notify.showError('please select size first','Error');
     }
     else {
       this.sum = 0;
@@ -92,18 +93,18 @@ export class ClothsComponent implements OnInit {
       {
         if(res==true)
         {
-          alert("SuccessFully Added To The Cart");
+          this.Notify.showSuccess('Successfully Added To The Cart', 'Success');
           this.getAllCartData();
         }
         else{
-          alert("Error To Adding in Cart");
+          this.Notify.showError('Error To Adding Product in Cart','Error');
         }
       })
        
     }
   }
   else{
-    alert("login First");
+    this.Notify.showWarning('Login First', 'Error');
     this.Router.navigate(['/signIn']);
   }
 }

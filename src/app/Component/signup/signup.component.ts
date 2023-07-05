@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
 import { EmployeeData } from 'src/app/Model/employee';
 import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
+import {NotifyService} from 'src/Services/notify.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   employeeById!: any
   date!: any
   allGender!: any;
-  constructor(private services: ServicesService) {
+
+  constructor(private services: ServicesService,private Notify: NotifyService) {
     this.employee = new FormGroup({
       empId: new FormControl(),
       firstName: new FormControl('', [Validators.required]),
@@ -79,7 +81,7 @@ export class SignupComponent implements OnInit {
       this.services.SignUpUser(this.employeeData).subscribe(res => {
         if(res==true)
         {
-        alert("Success");
+        this.Notify.showSuccess('Successfully Registered','Success');
         this.employee.reset();
         }
       })

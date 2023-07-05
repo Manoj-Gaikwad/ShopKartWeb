@@ -1,20 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ServicesService } from 'src/Services/services.service';
-import { selectedItem } from 'src/app/Model/selectedItem';
-import { Cart } from 'src/app/Model/cart';
-import { Router } from '@angular/router';
-
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { ServicesService } from "src/Services/services.service";
+import { selectedItem } from "src/app/Model/selectedItem";
+import { Cart } from "src/app/Model/cart";
+import { Router } from "@angular/router";
+import { NotifyService } from "src/Services/notify.service";
 
 @Component({
-  selector: 'app-shoes',
-  templateUrl: './shoes.component.html',
-  styleUrls: ['./shoes.component.scss']
+  selector: "app-shoes",
+  templateUrl: "./shoes.component.html",
+  styleUrls: ["./shoes.component.scss"],
 })
 export class ShoesComponent implements OnInit {
-
   allShoesDetails!: any;
   selectedItems: selectedItem[] = [];
-  Cart!:Cart;
+  Cart!: Cart;
   image!: string;
   total = 0;
   sum = 0;
@@ -22,27 +21,26 @@ export class ShoesComponent implements OnInit {
   price!: any;
   SItemPrice!: number;
   originalPrice!: number;
-  quantity=1;
-  cartLength:any;
-  indexval=0;
-  allRecords:any;
+  quantity = 1;
+  cartLength: any;
+  indexval = 0;
+  allRecords: any;
   // buttonDisebled = false;
-  shoesAddress=" ../../assets/shoes-images/";
-  isLogin!:any;
-  iscustomerid!:any;
-  
+  shoesAddress = " ../../assets/shoes-images/";
+  isLogin!: any;
+  iscustomerid!: any;
 
   constructor(
     private ServicesService: ServicesService,
-    private router: Router
+    private router: Router,
+    private Notify: NotifyService
   ) {
-    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
-    this.iscustomerid=sessionStorage.getItem("customerid");
-   }
-
+    this.isLogin = JSON.parse(sessionStorage.getItem("isLogin")!);
+    this.iscustomerid = sessionStorage.getItem("customerid");
+  }
 
   ngOnInit(): void {
-    this.isLogin=JSON.parse(sessionStorage.getItem("isLogin")!);
+    this.isLogin = JSON.parse(sessionStorage.getItem("isLogin")!);
     // this.ServicesService.isLogin.subscribe(res=>{
     //   this.isLogin=res;
     // })
@@ -50,9 +48,9 @@ export class ShoesComponent implements OnInit {
   }
 
   getAllShoesDetails() {
-    this.ServicesService.getShoesData().subscribe(res => {
+    this.ServicesService.getShoesData().subscribe((res) => {
       this.allShoesDetails = res;
-    })
+    });
   }
 
   selectedItem(e: any) {
@@ -63,44 +61,41 @@ export class ShoesComponent implements OnInit {
     this.selectedItems.push(e);
   }
 
-addToCart(e: any) {
-  if(this.isLogin!=undefined){
-      var showSize:string=String(this.size);
+  addToCart(e: any) {
+    if (this.isLogin != undefined) {
+      var showSize: string = String(this.size);
       if (this.size == undefined) {
-        alert("Please Select Size First");
-      }
-      else {
+        this.Notify.showError("Please Select Size First",'Error');
+      } else {
         this.sum = 0;
         e.pprice = this.price;
-        for(let i=0;i<this.selectedItems.length;i++){
-        this.Cart=new Cart()
-        this.Cart.cid=this.iscustomerid;
-        this.Cart.pid=this.selectedItems[i]?.pid;
-        this.Cart.ptype=this.selectedItems[i]?.ptype;
-        this.Cart.pname=this.selectedItems[i]?.pname;
-        this.Cart.psize=showSize;
-        this.Cart.pcolor=this.selectedItems[i].pcolor;
-        if(this.Cart.pquantity==undefined){
-        this.Cart.pquantity=this.quantity;
+        for (let i = 0; i < this.selectedItems.length; i++) {
+          this.Cart = new Cart();
+          this.Cart.cid = this.iscustomerid;
+          this.Cart.pid = this.selectedItems[i]?.pid;
+          this.Cart.ptype = this.selectedItems[i]?.ptype;
+          this.Cart.pname = this.selectedItems[i]?.pname;
+          this.Cart.psize = showSize;
+          this.Cart.pcolor = this.selectedItems[i].pcolor;
+          if (this.Cart.pquantity == undefined) {
+            this.Cart.pquantity = this.quantity;
+          }
+          this.Cart.pprice = this.price;
+          this.Cart.newprice = this.Cart.pprice * this.Cart.pquantity;
+          this.Cart.pimage = this.selectedItems[i].pimage;
         }
-        this.Cart.pprice=this.price;
-        this.Cart.newprice=this.Cart.pprice*this.Cart.pquantity;
-        this.Cart.pimage=this.selectedItems[i].pimage;
-      }
-      this.ServicesService.addToCart(this.Cart).subscribe(res=>{
-          if(res==true){
-            alert("SuccessFully Added To The Cart");
+        this.ServicesService.addToCart(this.Cart).subscribe((res) => {
+          if (res == true) {
+            this.Notify.showSuccess('Successfully Added To The Cart','Success');
             this.getAllCartData();
+          } else {
+            this.Notify.showError('Error To Adding Product in Cart','Error');
           }
-          else{
-            alert("Error To Adding in Cart");
-          }
-      })
-    }
-  }
-    else{
-      this.router.navigate(['/signIn']);
-      alert("login First");
+        });
+      }
+    } else {
+      this.router.navigate(["/signIn"]);
+      this.Notify.showWarning('login First','Error');
     }
   }
 
@@ -123,16 +118,16 @@ addToCart(e: any) {
     // }
     if (this.originalPrice != undefined) {
       this.SItemPrice = this.originalPrice;
-      if (this.size == '7') {
+      if (this.size == "7") {
         this.SItemPrice = this.SItemPrice - 100;
       }
-      if (this.size == '8') {
+      if (this.size == "8") {
         this.SItemPrice = this.SItemPrice - 50;
       }
-      if (this.size == '10') {
+      if (this.size == "10") {
         this.SItemPrice = this.SItemPrice + 50;
       }
-      if (this.size == '11') {
+      if (this.size == "11") {
         this.SItemPrice = this.SItemPrice + 100;
       }
       if (this.SItemPrice != undefined) {

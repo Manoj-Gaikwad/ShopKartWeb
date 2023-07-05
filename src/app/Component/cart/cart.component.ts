@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ServicesService } from 'src/Services/services.service';
 import { Cart } from 'src/app/Model/cart';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
+import { NotifyService } from 'src/Services/notify.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CartComponent implements OnInit {
   isBuyNow = false;
   billingdata: any;
 
-  constructor(private servicesService: ServicesService,private router:Router) {
+  constructor(private servicesService: ServicesService,private router:Router,private Notify:NotifyService) {
     this.isLogin =JSON.parse(sessionStorage.getItem('isLogin')!);
     this.isCustomerId = sessionStorage.getItem('customerid');
     if (this.isCustomerId != undefined && this.isCustomerId != 0) {
@@ -59,7 +60,7 @@ export class CartComponent implements OnInit {
 
   removeItem(e: any) {
     this.servicesService.deletItem(e).subscribe((res) => {
-      alert('Item Removed');
+      this.Notify.showSuccess('Item Removed Successfully','Success');
       this.getAllCartData();
     });
   }
@@ -75,7 +76,6 @@ export class CartComponent implements OnInit {
     this.cart.newprice = this.cart.pprice * this.cart.pquantity;
     this.servicesService.updateCart(this.cart).subscribe((res) => {
       if (res != null) {
-        console.log('Success');
         this.getAllCartData();
       }
     });
@@ -93,18 +93,17 @@ export class CartComponent implements OnInit {
   }
 
   SubtractQuantity = (event: any) => {
-    if (event.pquantity > 1) {
+    if (event.pquantity >= 1) {
       this.cart = event;
       this.cart.pquantity = this.cart.pquantity - 1;
       this.cart.newprice = this.cart.newprice - this.cart.pprice;
       this.servicesService.updateCart(this.cart).subscribe((res) => {
         if (res != null) {
-          console.log('Success');
           this.getAllCartData();
         }
       });
     } else {
-      alert('Product Quantity is not less than 1');
+      this.Notify.showError('No Product in Cart','Error');
     }
   };
 }
