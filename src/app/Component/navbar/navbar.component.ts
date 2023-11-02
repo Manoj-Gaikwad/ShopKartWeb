@@ -15,6 +15,19 @@ export class NavbarComponent implements OnInit {
   CartLength:any;
   isLogin:any;
   iscustomerid!:any;
+  pagesAccess:any;
+  Home:any;
+  Cloth:any;
+  ShoesSandals:any;
+  Cosmetics:any;
+  Cart:any;
+  Inventry:any;
+  About:any;
+  Contact:any;
+  Dashboard:any;
+
+  //Pages Access Variables
+  
 
   constructor(private ServicesService: ServicesService, private router: Router) {
     
@@ -22,14 +35,50 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.ServicesService.cartLength.subscribe(res =>{
+      this.Cloth=true;
+      this.ShoesSandals=true;
+      this.Cosmetics=true;
+      this.ServicesService.cartLength.subscribe(res =>{
       this.cartlength = Number(res);
       this.isLogin=JSON.parse((sessionStorage.getItem("isLogin"))!);
       this.iscustomerid=sessionStorage.getItem("customerid");
+      this.userPagesAccess();
     });
     this.getAllCartData();
+ 
   }
   
+  userPagesAccess(){
+    debugger
+    this.pagesAccess=sessionStorage.getItem("pages");
+    this.pagesAccess=this.pagesAccess?.split(',');
+    for(let i=0;i<this.pagesAccess.length;i++){
+    switch (this.pagesAccess[i]) {
+      case this.pagesAccess[i]="Home":{
+        this.Home=true;
+        break;
+      }
+      case this.pagesAccess[i]="About":{
+        this.About=true;
+        break;
+      }
+      case this.pagesAccess[i]="Contact":{
+        this.Contact=true;
+        break;
+      }
+      case this.pagesAccess[i]="Inventary":{
+        this.Inventry=true;
+        break;
+      }
+      case this.pagesAccess[i]="Dashboard":{
+        this.Dashboard=true;
+        break;
+      }
+      
+    }
+    }
+    console.log("PageAccess is="+this.pagesAccess);
+  }
   getAllCartData() {
     this.ServicesService.getAllCartData(this.iscustomerid).subscribe((res) => {
       this.allRecords = res;

@@ -56,6 +56,7 @@ export class ServicesService {
   }
 
   checkValidEmail(email: any, password: any) {
+    debugger
     let url = this.baseUrl + "/SignIn/loginEmployee/" + email + '/' + password;
     return this.http.get(url);
   }
