@@ -6,16 +6,16 @@
   </button>
   <div class="collapse navbar-collapse " id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="Home==true">
         <a class="nav-link" routerLink="homepage" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="Cloth==true" >
         <a class="nav-link" routerLink="cloths" routerLinkActive="active">Cloths</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="ShoesSandals==true">
         <a class="nav-link" routerLink="shoesDetails" routerLinkActive="active">Shoes/Sandals</a>
       </li>
-      <li>
+      <li *ngIf="Cosmetics==true">
         <a class="nav-link" routerLink="cosmetics" routerLinkActive="active">Cosmetics</a>
       </li>
 
@@ -32,7 +32,7 @@
           <!-- <span class="badge">3</span> -->
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="Inventry==true">
         <a class="nav-link" routerLink="inventry" routerLinkActive="active">Inventry</a>
       </li>
     </ul>

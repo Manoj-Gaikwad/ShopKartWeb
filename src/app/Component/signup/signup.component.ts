@@ -73,7 +73,6 @@ export class SignupComponent implements OnInit {
     this.employeeData.contactNo = this.employee.value.contactNo;
     this.employeeData.password = this.employee.value.password;
     this.employeeData.cPassword = this.employee.value.cPassword;
-    this.employee.reset();
     this.date = this.formatDate(this.employeeData.dob);
     this.employeeData.dob = this.date;
     if (this.employeeData.empId == undefined) {
@@ -83,6 +82,10 @@ export class SignupComponent implements OnInit {
         {
         this.Notify.showSuccess('Successfully Registered','Success');
         this.employee.reset();
+        }
+        else{
+          this.Notify.showError('Error in Registration','Error');
+          this.employee.reset();
         }
       })
     }

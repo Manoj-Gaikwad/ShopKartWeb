@@ -38,7 +38,7 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
 
   checkCustomer(e: any) {
-    debugger;
+    debugger
     this.signin.email = e.value.email;
     this.signin.password = e.value.password;
     this.services.SignIn(this.signin).subscribe((res: any) => {
@@ -46,6 +46,7 @@ export class SigninComponent implements OnInit {
         this.Notify.showSuccess("Login Successfully", "Success");
         sessionStorage.setItem("isLogin", JSON.stringify(res.result.output));
         sessionStorage.setItem("customerid", res.result.output.cId);
+        sessionStorage.setItem("pages",res.result.pages);
         this.services.getAllCartData(res.result.output.cId).subscribe((res) => {
           this.allRecords = res;
           this.services.cartLength.next(this.allRecords.length);
@@ -56,7 +57,7 @@ export class SigninComponent implements OnInit {
       } else {
         // this.router.navigate(['/signIn']);
         this.Notify.showError("!! Invalid Details.", "Error");
-        // this.loginForm.reset();
+        this.loginForm.reset();
       }
     });
   }
